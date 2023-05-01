@@ -1,14 +1,17 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import Header from "./components/header";
 import { Outlet, Routes, Route } from "react-router-dom";
+import Header from "./components/header";
+import Footer from "./components/footer";
+import RegisterPage from "./routes/RegisterPage";
 
 function Layout() {
   return (
     <div>
       <Header />
       <Outlet />
+      <Footer />
     </div>
   );
 }
@@ -16,7 +19,9 @@ function Layout() {
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Layout />}></Route>
+      <Route path="/" element={<Layout />}>
+        <Route path="/register" element={<RegisterPage />} />
+      </Route>
     </Routes>
   );
 }
