@@ -5,7 +5,7 @@ import { Nav, Navbar, Container } from "react-bootstrap";
 
 function NavbarComponent() {
   return (
-    <Navbar collapseOnSelect bg="light" expand="xxl" className="navbarContainer" fixed="top">
+    <Navbar collapseOnSelect bg="light" expand="xxxl" className="navbarContainer" fixed="top">
       <Container className="d-flex justify-content-space-between">
         <div className="d-flex align-items-center">
           <Navbar.Brand className="logoContainer">
@@ -14,17 +14,20 @@ function NavbarComponent() {
             </Link>
           </Navbar.Brand>
         </div>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
-          <Nav className="me-auto">
-            <Nav.Link href="/" className="d-flex justify-content-end">
-              Home
-            </Nav.Link>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" className="navbarToggle" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="navItemsContainer me-auto">
             <Nav.Link href="/register" className="d-flex justify-content-end">
               <strong>Sign Up</strong>
             </Nav.Link>
             <Nav.Link href="/login" className="d-flex justify-content-end">
               Login
+            </Nav.Link>
+            <Nav.Link href="/" className="d-flex justify-content-end">
+              Home
+            </Nav.Link>
+            <Nav.Link href="/admin" className="d-flex justify-content-end">
+              Holidaze your home
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
