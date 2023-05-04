@@ -2,6 +2,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { StyledForm, StyledInput, StyledParagraph } from "../../styles/styledComponents/styledForm";
+import { StyledButton } from "../../styles/styledComponents/styledButton";
 import { Card } from "react-bootstrap";
 
 const schema = yup
@@ -36,7 +37,7 @@ function RegisterPage() {
       <Card.Body className="mt-5">
         <div>
           <h1 align="center" className="mt-4">
-            Register
+            Sign up
           </h1>
         </div>
         <StyledForm onSubmit={handleSubmit(onSubmit)}>
@@ -52,7 +53,9 @@ function RegisterPage() {
             {errors.password && <StyledParagraph>{errors.password.message}</StyledParagraph>}
             <StyledInput type="text" placeholder="Password" {...register("password")} />
           </div>
-          <StyledInput type="submit" />
+          <StyledButton type="submit" className="mt-2">
+            Submit
+          </StyledButton>
         </StyledForm>
       </Card.Body>
     </Card>

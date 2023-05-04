@@ -5,12 +5,17 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { Container } from "react-bootstrap";
+import GlobalStyle from "./styles/globalStyle";
+import Theme from "./styles/theme";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Container>
     <BrowserRouter>
-      <App />
+      <Theme>
+        <GlobalStyle />
+        <App />
+      </Theme>
     </BrowserRouter>
   </Container>
 );
