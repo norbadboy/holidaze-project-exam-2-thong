@@ -25,7 +25,7 @@ function HomePage() {
       </div>
       <Row>
         {data.map((product) => (
-          <Col key={product.id} sm={12} md={6} lg={4} xl={3}>
+          <Col key={product.id} sm={12} md={6} lg={3} xl={4}>
             <ProductCard product={product} />
           </Col>
         ))}

@@ -6,7 +6,7 @@
     background-color: #f7e6e6;
   }
   .homePageCard {
-    height: 585px;
+    margin-bottom: 40px;
   }
   .homePageCard img {
     height: 280px;
@@ -14,4 +14,6 @@
     -o-object-fit: cover;
     object-fit: cover;
   }
+}
+@media screen and (max-width: 425px) {
 }

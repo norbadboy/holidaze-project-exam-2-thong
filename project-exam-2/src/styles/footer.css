@@ -1,0 +1,27 @@
+.footerContainer {
+  display: flex;
+  position: sticky;
+  bottom: 0;
+  background-color: var(--background-footer);
+  border-radius: 10px;
+  height: 70px;
+}
+.footerLink {
+  text-decoration: none;
+  color: #000;
+  margin: 0 8px 0 8px;
+}
+.footerLink:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 1.3px;
+  text-underline-offset: 2px;
+  color: #000;
+}
+.footerIcon {
+  color: var(--primary-dark);
+  font-size: 1.25rem;
+  margin: 0 0.5rem;
+}
+.footerIcon:hover {
+  color: var(--primary);
+}
