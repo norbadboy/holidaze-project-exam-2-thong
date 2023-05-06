@@ -1,0 +1,12 @@
+.navbarContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+.navbarToggle {
+  font-size: 25px;
+}
+.navItemsContainer {
+  margin-top: 15px;
+}
