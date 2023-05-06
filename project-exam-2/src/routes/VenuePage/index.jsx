@@ -2,13 +2,18 @@ import { API_PATH } from "../../api/constant.mjs";
 import { useParams } from "react-router-dom";
 import useAPI from "../../api/apiHook";
 import { Row, Col, Card, Button } from "react-bootstrap";
+import { FaWifi, FaParking } from "react-icons/fa";
+import { MdPets, MdFreeBreakfast } from "react-icons/md";
+import styles from "../../styles/venue.module.css";
 
 const url = API_PATH + "/venues";
 
 function VenuePage() {
   let { id } = useParams();
-  const { data: venue, loading, error } = useAPI(url + "/" + id);
+  const { data: venue, loading, error } = useAPI(`${url}/${id}?_owner=true`);
   console.log(venue);
+  const media = venue.media;
+  const created = venue.created;
 
   if (loading) {
     return <div>Loading...</div>;
@@ -23,33 +28,68 @@ function VenuePage() {
       <div className="venuePageTitle--container my-5 pt-5">
         <Row className="productPageContainer">
           <div>
-            <Card.Text>{venue.created}</Card.Text>
-
+            <Card.Text>{created}</Card.Text>
             <h1>{venue.name}</h1>
+            <h5>rating: {venue.rating}</h5>
           </div>
           <Col>
-            <Card className="productPageCard">
-              <Card.Img
-                variant="top"
-                src={[venue.media]}
-                alt={venue.title}
-                style={{ width: "500px" }}
-              />
-            </Card>
-            <Card.Body className="mt-5">
-              <Card.Text>Price: {venue.price}</Card.Text>
-              <Card.Text>Max guests: {venue.maxGuests}</Card.Text>
-              <Card.Text>{venue.description}</Card.Text>
-              <div>
-                <h5>What this place offers</h5>
+            <div className="venueImgContainer" style={{ width: "500px" }}>
+              <div className="d-flex">
+                {media?.map((image) => (
+                  <Card.Img variant="top" src={image} alt={venue.title} />
+                ))}
               </div>
-              <div>
-                <ul>
-                  <li>Wifi: {venue.meta.wifi ? "Yes" : "No"}</li>
-                  <li>Parking: {venue.meta.parking ? "Yes" : "No"}</li>
-                  <li>Breakfast: {venue.meta.breakfast ? "Yes" : "No"}</li>
-                  <li>Pets: {venue.meta.pets ? "Allowed" : "Not allowed"}</li>
-                </ul>
+            </div>
+            <Card.Body className="mt-5">
+              <div className="quickInfoContainer">
+                <h5>Entire home hosted by {venue.owner?.name}</h5>
+                <Card.Text>Max guests: {venue.maxGuests}</Card.Text>
+              </div>
+              <div className="mt-5">
+                <Card.Text>Price: {venue.price}</Card.Text>
+                <Card.Text>Description: {venue.description}</Card.Text>
+              </div>
+              <div className="amenitiesContainer mt-4">
+                <h5>What this place offers</h5>
+                <div className="offersContainer">
+                  <ul style={{ padding: "0" }}>
+                    <li className="d-flex mt-2">
+                      <FaWifi className={styles.metaIcon} />
+                      <div>
+                        <strong>Wifi: </strong> {venue.meta?.wifi ? "Yes" : "No"}
+                      </div>
+                    </li>
+                    <li className="d-flex mt-2">
+                      <FaParking className={styles.metaIcon} />
+                      <div>
+                        <strong>Parking: </strong>
+                        {venue.meta?.parking ? "Yes" : "No"}
+                      </div>
+                    </li>
+                    <li className="d-flex mt-2">
+                      <MdFreeBreakfast className={styles.metaIcon} />
+                      <div>
+                        {" "}
+                        <strong>Breakfast: </strong>
+                        {venue.meta?.breakfast ? "Yes" : "No"}
+                      </div>
+                    </li>
+                    <li className="d-flex mt-2">
+                      <MdPets className={styles.metaIcon} />
+                      <div>
+                        <strong>Pets: </strong> {venue.meta?.pets ? "Allowed" : "Not allowed"}
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div className="locationContainer mt-4">
+                <h5>Where you'll be</h5>
+                <div>
+                  <div>
+                    {venue.location?.address}, {venue.location?.city}, {venue.location?.country}
+                  </div>
+                </div>
               </div>
             </Card.Body>
           </Col>
