@@ -4,9 +4,9 @@ import { headers } from "../headers.mjs";
 const action = "/auth/register";
 const method = "POST";
 
-export async function register({ name, email, password }) {
+export async function registerFunction({ name, email, password, venueManager }) {
   const registerURL = API_PATH + action;
-  const body = JSON.stringify({ name, email, password });
+  const body = JSON.stringify({ name, email, password, venueManager });
 
   const response = await fetch(registerURL, {
     headers: headers("application/json"),
