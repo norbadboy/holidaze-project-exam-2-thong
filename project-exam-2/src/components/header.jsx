@@ -24,10 +24,10 @@ function NavbarComponent() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className={styles.navItemsContainer}>
             <Nav.Link href="/register" className="d-flex justify-content-end">
-              <strong>Sign Up</strong>
+              <strong>Sign up</strong>
             </Nav.Link>
             <Nav.Link href="/login" className="d-flex justify-content-end">
-              Login
+              Log in
             </Nav.Link>
             <Nav.Link href="/" className="d-flex justify-content-end">
               Home

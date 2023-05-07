@@ -7,6 +7,7 @@ import Footer from "./components/footer";
 import SignUpFormUser from "./routes/RegisterPageUser";
 import HomePage from "./routes/HomePage";
 import VenuePage from "./routes/VenuePage";
+import Login from "./routes/LoginPage";
 
 function Layout() {
   return (
@@ -24,6 +25,7 @@ function App() {
       <Route path="/" element={<Layout />}>
         <Route path="/" element={<HomePage />} />
         <Route path="/register" element={<SignUpFormUser />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/:id" element={<VenuePage />} />
       </Route>
     </Routes>
