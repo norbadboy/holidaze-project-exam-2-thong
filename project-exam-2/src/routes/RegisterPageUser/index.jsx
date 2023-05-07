@@ -1,14 +1,12 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
 import { StyledForm, StyledInput } from "../../styles/styledComponents/styledForm";
 import { StyledButton } from "../../styles/styledComponents/styledButton";
 import { Button, Card } from "react-bootstrap";
 import { registerFunction } from "../../api/auth/register.mjs";
 import { FaFacebookSquare, FaApple, FaGoogle } from "react-icons/fa";
 import { MdMail } from "react-icons/md";
-import { Link } from "react-router-dom";
 
 const schema = yup.object().shape({
   name: yup
@@ -25,26 +23,25 @@ const schema = yup.object().shape({
 });
 
 function SignUpFormUser() {
-  const [isVenueManager, setIsVenueManager] = useState(false);
-  console.log(isVenueManager);
-  const [formData] = useState({
-    name: "",
-    email: "",
-    password: "",
-    avatar: "",
-    venueManager: isVenueManager,
-  });
+  const defaultValues = {
+    name: "thong",
+    email: "thong@noroff.no",
+    password: "12345678",
+    avatar: "https://placekitten.com/g/200/300",
+    venueManager: false,
+  };
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
     mode: "onChange",
-    defaultValues: formData,
+    defaultValues: defaultValues,
     resolver: yupResolver(schema),
   });
 
   const onSubmit = async (data) => {
+    console.log(data);
     try {
       const response = await registerFunction(data);
       console.log(response);
@@ -84,16 +81,8 @@ function SignUpFormUser() {
             {errors.avatar && <p>{errors.avatar.message}</p>}
             <div>
               <label>
-                <input
-                  className="me-2"
-                  type="checkbox"
-                  checked={isVenueManager}
-                  onChange={(event) => {
-                    setIsVenueManager(event.target.checked);
-                    console.log("isVenueManager:", isVenueManager);
-                  }}
-                />
-                I want to be a venue manager
+                <input className="me-2" type="checkbox" {...register("venueManager")} />I want to be
+                a venue manager
               </label>
             </div>
             <StyledButton type="submit" className="mt-4">
@@ -110,7 +99,6 @@ function SignUpFormUser() {
                 className="mt-3 d-flex justify-content-center"
                 variant="outline-dark"
                 size="md"
-                block
                 onClick={handleContinueWithEmail}
               >
                 <MdMail
@@ -125,7 +113,6 @@ function SignUpFormUser() {
                 className="mt-3 d-flex justify-content-center"
                 variant="outline-primary"
                 size="md"
-                block
                 onClick={() => window.open("https://www.facebook.com", "_blank")}
               >
                 <FaFacebookSquare className="mt-1 d-flex flex-grow-1" />
@@ -135,7 +122,6 @@ function SignUpFormUser() {
                 className="mt-3 d-flex justify-content-center"
                 variant="outline-danger"
                 size="md"
-                block
                 onClick={() => window.open("https://www.google.com", "_blank")}
               >
                 <FaGoogle className="mt-1 d-flex flex-grow-1" style={{ width: "0px" }} />
@@ -147,7 +133,6 @@ function SignUpFormUser() {
                 className="mt-3 d-flex justify-content-center"
                 variant="outline-dark"
                 size="md"
-                block
                 onClick={() => window.open("https://www.apple.com", "_blank")}
               >
                 <FaApple
