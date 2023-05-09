@@ -3,11 +3,14 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { StyledButton } from "../../styles/styledComponents/styledButton";
 import { Card } from "react-bootstrap";
 import { loginFunction } from "../../api/auth/login.mjs";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
+  // only for testing. remove later
   const initialValues = {
-    email: "",
-    password: "",
+    email: "thong99@noroff.no",
+    password: "12345678",
   };
   const validationSchema = yup.object().shape({
     email: yup
@@ -23,6 +26,12 @@ const Login = () => {
     try {
       const response = await loginFunction(data);
       console.log(response);
+
+      if (response.venueManager) {
+        navigate("/manager");
+      } else {
+        navigate("/user");
+      }
     } catch (error) {
       console.error(error);
     }

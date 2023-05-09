@@ -8,6 +8,8 @@ import SignUpFormUser from "./routes/RegisterPageUser";
 import HomePage from "./routes/HomePage";
 import VenuePage from "./routes/VenuePage";
 import Login from "./routes/LoginPage";
+import HomePageManager from "./routes/LoggedInManager";
+import HomePageUser from "./routes/LoggedInUser";
 
 function Layout() {
   return (
@@ -27,6 +29,8 @@ function App() {
         <Route path="/register" element={<SignUpFormUser />} />
         <Route path="/login" element={<Login />} />
         <Route path="/:id" element={<VenuePage />} />
+        <Route path="/manager" element={<HomePageManager />} />
+        <Route path="/user" element={<HomePageUser />} />
       </Route>
     </Routes>
   );

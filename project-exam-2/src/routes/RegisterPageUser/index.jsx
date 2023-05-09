@@ -23,6 +23,7 @@ const schema = yup.object().shape({
 });
 
 function SignUpFormUser() {
+  // only for testing. remove later
   const defaultValues = {
     name: "thong",
     email: "thong@noroff.no",
