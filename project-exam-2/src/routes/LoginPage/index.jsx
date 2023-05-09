@@ -8,11 +8,18 @@ import styles from "../../styles/login.module.css";
 
 const Login = () => {
   const navigate = useNavigate();
+
   // only for testing. remove later
+  /**
+   * Initial values for formik
+   * @param {string} email
+   * @param {string} password
+   */
   const initialValues = {
     email: "thong98@noroff.no",
     password: "12345678",
   };
+
   const validationSchema = yup.object().shape({
     email: yup
       .string()
@@ -23,10 +30,16 @@ const Login = () => {
       .required(),
     password: yup.string().min(8, "minimum 8 characters").required(),
   });
-  const onSubmit = async (data) => {
+  /**
+   * Function to handle login
+   * @param {object} data
+   * @param {object} setErrors
+   * @returns navigate to manager or user page
+   * @returns set error if invalid email or password
+   */
+  const onSubmit = async (data, { setErrors }) => {
     try {
       const response = await loginFunction(data);
-      console.log(response);
 
       if (response.venueManager) {
         navigate("/manager");
@@ -34,7 +47,7 @@ const Login = () => {
         navigate("/user");
       }
     } catch (error) {
-      console.error(error);
+      setErrors({ email: "Invalid email or password" });
     }
   };
 
@@ -53,19 +66,31 @@ const Login = () => {
             {({ isSubmitting }) => (
               <Form className="d-flex flex-column justify-content-center align-items-center">
                 <div className="my-4">
-                  <div>
+                  <div className="d-flex flex-column">
+                    <ErrorMessage name="email">
+                      {(msg) => (
+                        <div
+                          style={{
+                            color: "red",
+                            fontSize: "0.8rem",
+                            marginBottom: "0.2rem",
+                          }}
+                        >
+                          {msg}
+                        </div>
+                      )}
+                    </ErrorMessage>
                     <label htmlFor="email"></label>
                     <Field type="email" name="email" className={styles.loginFieldText} />
-                    <ErrorMessage name="email" />
                   </div>
                   <div>
+                    <ErrorMessage name="password" />
                     <label htmlFor="password"></label>
                     <Field type="password" name="password" className={styles.loginFieldText} />
-                    <ErrorMessage name="password" />
                   </div>
                 </div>
                 <StyledButton type="submit" disabled={isSubmitting}>
-                  Login
+                  Log in
                 </StyledButton>
               </Form>
             )}

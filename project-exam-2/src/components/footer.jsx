@@ -5,10 +5,6 @@ import { Link } from "react-router-dom";
 import "../styles/footer.css";
 
 function Footer() {
-  const facebookIcon = <FaFacebook />;
-  const instagramIcon = <FaInstagram />;
-  const twitterIcon = <FaTwitter />;
-
   return (
     <div className="footerContainer mb-3 d-flex">
       <div className="d-flex flex-grow-1 justify-content-between">
@@ -37,7 +33,7 @@ function Footer() {
                 rel="noopener noreferrer"
                 className="footerIcon"
               >
-                {facebookIcon}
+                <FaFacebook className="footerIcon" />
               </a>
             </div>
             <div className="instagramIcon">
@@ -47,7 +43,7 @@ function Footer() {
                 rel="noopener noreferrer"
                 className="footerIcon"
               >
-                {instagramIcon}
+                <FaInstagram className="footerIcon" />
               </a>
             </div>
             <div className="twitterIcon">
@@ -57,7 +53,7 @@ function Footer() {
                 rel="noopener noreferrer"
                 className="footerIcon"
               >
-                {twitterIcon}
+                <FaTwitter className="footerIcon" />
               </a>
             </div>
           </div>
