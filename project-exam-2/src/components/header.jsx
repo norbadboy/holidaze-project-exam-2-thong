@@ -5,6 +5,7 @@ import { Nav, Navbar, Container } from "react-bootstrap";
 import { load } from "../api/storage/load.mjs";
 import defaultUser from "../pictures/defaultUser.png";
 import { useState, useRef, useEffect } from "react";
+import { FaBars } from "react-icons/fa";
 
 function LoggedOutHeader() {
   const user = load("user");
@@ -47,11 +48,14 @@ function LoggedOutHeader() {
         {user && (
           <Navbar.Toggle
             aria-controls="basic-navbar-nav"
-            className={styles.navbarToggle}
+            className={`${styles.navbarToggle} ${styles.pillToggle}`}
             onClick={() => setExpanded(expanded ? false : "expanded")}
+            onMouseDown={(e) => e.preventDefault()}
           >
             <div className="d-flex align-items-center">
-              <span className="navbar-toggler-icon"></span>
+              <span>
+                <FaBars className={styles.customHamBars} />
+              </span>
               {user && <img src={user.avatar} alt="user avatar" className={styles.avatarImage} />}
             </div>
           </Navbar.Toggle>
@@ -59,12 +63,15 @@ function LoggedOutHeader() {
         {!user && (
           <Navbar.Toggle
             aria-controls="basic-navbar-nav"
-            className={styles.navbarToggle}
+            className={`${styles.navbarToggle} ${styles.pillToggle}`}
             onClick={() => setExpanded(expanded ? false : "expanded")}
+            onMouseDown={(e) => e.preventDefault()}
           >
             <div className="d-flex align-items-center">
-              <span className="navbar-toggler-icon"></span>
-              <img src={defaultUser} alt="user avatar" className={styles.avatarImage} />
+              <span>
+                <FaBars className={styles.customHamBars} />
+              </span>
+              <img src={defaultUser} alt="default avatar" className={styles.avatarImage} />
             </div>
           </Navbar.Toggle>
         )}

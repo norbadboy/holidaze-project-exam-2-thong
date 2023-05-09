@@ -33,7 +33,7 @@ function HomePage() {
       </div>
       <Row>
         {data.slice(0, productLimit).map((product) => (
-          <Col key={product.id} sm={12} md={6} lg={3} xl={4}>
+          <Col key={product.id} xl={4} md={6}>
             <ProductCard product={product} />
           </Col>
         ))}
