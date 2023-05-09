@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../pictures/logo.png";
 import styles from "../styles/header.module.css";
 import { Nav, Navbar, Container } from "react-bootstrap";
@@ -6,12 +6,21 @@ import { load } from "../api/storage/load.mjs";
 import defaultUser from "../pictures/defaultUser.png";
 import { useState, useRef, useEffect } from "react";
 import { FaBars } from "react-icons/fa";
+import { logout } from "../api/auth/logout.mjs";
 
 function LoggedOutHeader() {
   const user = load("user");
   const [expanded, setExpanded] = useState(false);
   const navbarRef = useRef(null);
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
+
+  const brandLink = user && user.venueManager ? "/manager" : "/user";
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -40,9 +49,15 @@ function LoggedOutHeader() {
       <Container className="d-flex justify-content-space-between">
         <div className="d-flex align-items-center">
           <Navbar.Brand className="logoContainer">
-            <Link to="/">
-              <img src={logo} alt="logo" className="logoImage" />
-            </Link>
+            {user ? (
+              <Link to={brandLink}>
+                <img src={logo} alt="logo" className={styles.logo} />
+              </Link>
+            ) : (
+              <Link to="/">
+                <img src={logo} alt="logo" className={styles.logo} />
+              </Link>
+            )}
           </Navbar.Brand>
         </div>
         {user && (
@@ -80,14 +95,25 @@ function LoggedOutHeader() {
             {user ? (
               <>
                 {location.pathname === "/manager" && (
-                  <Nav.Link
-                    as={Link}
-                    to="/manage-venue"
-                    className="d-flex justify-content-end"
-                    onClick={() => setExpanded(false)}
-                  >
-                    Manage Venue
-                  </Nav.Link>
+                  <>
+                    <Nav.Link
+                      as={Link}
+                      to="/manage-venue"
+                      className="d-flex justify-content-end"
+                      onClick={() => setExpanded(false)}
+                    >
+                      Manage Venue
+                    </Nav.Link>
+                    <Nav.Link
+                      onClick={() => {
+                        handleLogout();
+                        setExpanded(false);
+                      }}
+                      className="d-flex justify-content-end"
+                    >
+                      Log out
+                    </Nav.Link>
+                  </>
                 )}
                 {location.pathname === "/user" && (
                   <>
@@ -106,6 +132,15 @@ function LoggedOutHeader() {
                       onClick={() => setExpanded(false)}
                     >
                       Bookings
+                    </Nav.Link>
+                    <Nav.Link
+                      onClick={() => {
+                        handleLogout();
+                        setExpanded(false);
+                      }}
+                      className="d-flex justify-content-end"
+                    >
+                      Log out
                     </Nav.Link>
                   </>
                 )}
@@ -128,16 +163,16 @@ function LoggedOutHeader() {
                 >
                   Log in
                 </Nav.Link>
+                <Nav.Link
+                  as={Link}
+                  to="/"
+                  className="d-flex justify-content-end"
+                  onClick={() => setExpanded(false)}
+                >
+                  Home
+                </Nav.Link>
               </>
             )}
-            <Nav.Link
-              as={Link}
-              to="/"
-              className="d-flex justify-content-end"
-              onClick={() => setExpanded(false)}
-            >
-              Home
-            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

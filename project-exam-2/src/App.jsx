@@ -4,7 +4,7 @@ import "./App.css";
 import { Outlet, Routes, Route } from "react-router-dom";
 import Header from "./components/header";
 import Footer from "./components/footer";
-import SignUpFormUser from "./routes/RegisterPageUser";
+import SignUpForm from "./routes/RegisterPage";
 import HomePage from "./routes/HomePage";
 import VenuePage from "./routes/VenuePage";
 import Login from "./routes/LoginPage";
@@ -26,7 +26,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route path="/" element={<HomePage />} />
-        <Route path="/register" element={<SignUpFormUser />} />
+        <Route path="/register" element={<SignUpForm />} />
         <Route path="/login" element={<Login />} />
         <Route path="/:id" element={<VenuePage />} />
         <Route path="/manager" element={<HomePageManager />} />
