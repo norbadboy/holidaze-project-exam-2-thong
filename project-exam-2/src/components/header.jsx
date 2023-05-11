@@ -7,6 +7,7 @@ import defaultUser from "../pictures/defaultUser.png";
 import { useState, useRef, useEffect } from "react";
 import { FaBars } from "react-icons/fa";
 import { logout } from "../api/auth/logout.mjs";
+// import SearchBar from "./searchBar";
 
 function LoggedOutHeader() {
   const user = load("user");
@@ -60,6 +61,9 @@ function LoggedOutHeader() {
             )}
           </Navbar.Brand>
         </div>
+        {/* <div className="d-flex align-items-center">
+          <SearchBar />
+        </div> */}
         {user && (
           <Navbar.Toggle
             aria-controls="basic-navbar-nav"

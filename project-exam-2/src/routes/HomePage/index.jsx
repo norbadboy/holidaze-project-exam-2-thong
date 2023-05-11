@@ -1,9 +1,11 @@
-import { Row, Col, Card, Button } from "react-bootstrap";
+import { Row, Col, Card } from "react-bootstrap";
 import ProductCard from "../../components/productCard.jsx";
 import { API_PATH } from "../../api/constant.mjs";
 import useAPI from "../../api/apiHook.jsx";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { StyledButton } from "../../styles/styledComponents/styledButton.jsx";
+import SearchBar from "../../components/searchBar.jsx";
+import { useSearchParams } from "react-router-dom";
 
 const url = API_PATH + "/venues";
 
@@ -11,6 +13,23 @@ function HomePage() {
   const [productLimit, setProductLimit] = useState(24);
   const limit = 96;
   const { data, loading, error } = useAPI(url + `?_limit=${limit}&_sort=id&_order=desc`);
+  let [searchParams] = useSearchParams();
+  const [items, setItems] = useState([]);
+
+  const searchText = searchParams.get("search");
+
+  useEffect(() => {
+    if (searchText && data.length > 0) {
+      const filteredProducts = data.filter((product) => {
+        return product.name.toLowerCase().includes(searchText.toLowerCase());
+      });
+      setItems(filteredProducts);
+    } else {
+      setItems(data);
+    }
+  }, [searchText, data]);
+
+  const productsToRender = searchText ? items : data;
 
   const handleLoadMore = () => {
     setProductLimit(productLimit + 24);
@@ -31,14 +50,17 @@ function HomePage() {
           <h4>Here goes filters</h4>
         </Card>
       </div>
+      <div className="mb-4">
+        <SearchBar />
+      </div>
       <Row>
-        {data.slice(0, productLimit).map((product) => (
+        {productsToRender.slice(0, productLimit).map((product) => (
           <Col key={product.id} xl={4} md={6}>
             <ProductCard product={product} />
           </Col>
         ))}
       </Row>
-      {data.length > productLimit && (
+      {productsToRender.length > productLimit && (
         <div className="text-center mb-5 pb-2">
           <StyledButton onClick={handleLoadMore}>Load more</StyledButton>
         </div>
