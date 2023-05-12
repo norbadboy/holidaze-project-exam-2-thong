@@ -95,7 +95,15 @@ function LoggedOutHeader() {
               {user ? (
                 <>
                   {user.venueManager ? (
-                    <div className="p-3">
+                    <div>
+                      <Nav.Link
+                        as={Link}
+                        to="/profile"
+                        className={styles.navLink}
+                        onClick={() => setExpanded(false)}
+                      >
+                        Profile
+                      </Nav.Link>
                       <Nav.Link
                         as={Link}
                         to="/manage-venue"
@@ -106,7 +114,7 @@ function LoggedOutHeader() {
                       </Nav.Link>
                       <Nav.Link
                         as={Link}
-                        to="/manager"
+                        to="/bookings"
                         className={styles.navLink}
                         onClick={() => setExpanded(false)}
                       >

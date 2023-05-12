@@ -2,7 +2,7 @@ import { API_PATH } from "../constant.mjs";
 import { headers } from "../headers.mjs";
 import { load } from "../storage/load.mjs";
 
-const action = "/profile";
+const action = "/profiles";
 const method = "GET";
 
 // get profile from server
