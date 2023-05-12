@@ -7,9 +7,10 @@ import defaultUser from "../pictures/defaultUser.png";
 import { useState, useRef, useEffect } from "react";
 import { FaBars } from "react-icons/fa";
 import { logout } from "../api/auth/logout.mjs";
+import { useUserContext } from "../contexts/userContext.jsx";
 
 function LoggedOutHeader() {
-  const user = load("user");
+  const { user } = useUserContext();
   const [expanded, setExpanded] = useState(false);
   const navbarRef = useRef(null);
   const navigate = useNavigate();
@@ -95,7 +96,15 @@ function LoggedOutHeader() {
               {user ? (
                 <>
                   {user.venueManager ? (
-                    <div className="p-3">
+                    <div>
+                      <Nav.Link
+                        as={Link}
+                        to="/profile"
+                        className={styles.navLink}
+                        onClick={() => setExpanded(false)}
+                      >
+                        Profile
+                      </Nav.Link>
                       <Nav.Link
                         as={Link}
                         to="/manage-venue"
@@ -106,7 +115,7 @@ function LoggedOutHeader() {
                       </Nav.Link>
                       <Nav.Link
                         as={Link}
-                        to="/manager"
+                        to="/bookings"
                         className={styles.navLink}
                         onClick={() => setExpanded(false)}
                       >
@@ -139,7 +148,7 @@ function LoggedOutHeader() {
                         className={styles.navLink}
                         onClick={() => setExpanded(false)}
                       >
-                        Profile
+                        Account
                       </Nav.Link>
                       <Nav.Link
                         as={Link}

@@ -1,6 +1,7 @@
 import { API_PATH } from "../constant.mjs";
 import { headers } from "../headers.mjs";
 import { load } from "../storage/load.mjs";
+import { save } from "../storage/save.mjs";
 
 const action = "/profiles";
 const method = "PUT";
@@ -17,10 +18,12 @@ export async function updateAvatar(avatar) {
   });
 
   if (response.ok) {
-    const profile = await response.json();
-    return profile;
+    const updatedProfile = await response.json();
+    profile.avatar = updatedProfile.avatar; // update the avatar in the profile
+    save("user", profile); // save the updated profile back to local storage
+    return updatedProfile;
   }
-  console.log("avatar updated");
 
+  console.log("avatar updated");
   throw new Error(response.statusText);
 }
