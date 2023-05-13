@@ -10,6 +10,7 @@ import VenuePage from "./routes/VenuePage";
 import Login from "./routes/LoginPage";
 import HomePageManager from "./routes/LoggedInManager";
 import HomePageUser from "./routes/LoggedInUser";
+import { UserProvider } from "./contexts/userContext";
 import BookingContextProvider from "./contexts/bookingContext";
 
 function Layout() {
@@ -25,16 +26,18 @@ function Layout() {
 function App() {
   return (
     <BookingContextProvider>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/register" element={<SignUpForm />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/:id" element={<VenuePage />} />
-          <Route path="/manager" element={<HomePageManager />} />
-          <Route path="/user" element={<HomePageUser />} />
-        </Route>
-      </Routes>
+      <UserProvider>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/register" element={<SignUpForm />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/:id" element={<VenuePage />} />
+            <Route path="/manager" element={<HomePageManager />} />
+            <Route path="/user" element={<HomePageUser />} />
+          </Route>
+        </Routes>
+      </UserProvider>
     </BookingContextProvider>
   );
 }

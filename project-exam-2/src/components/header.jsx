@@ -2,20 +2,21 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../pictures/logo.png";
 import styles from "../styles/header.module.css";
 import { Nav, Navbar, Container } from "react-bootstrap";
-import { load } from "../api/storage/load.mjs";
 import defaultUser from "../pictures/defaultUser.png";
 import { useState, useRef, useEffect } from "react";
 import { FaBars } from "react-icons/fa";
 import { logout } from "../api/auth/logout.mjs";
+import { useUser } from "../contexts/userContext";
 
 function LoggedOutHeader() {
-  const user = load("user");
   const [expanded, setExpanded] = useState(false);
   const navbarRef = useRef(null);
   const navigate = useNavigate();
+  const { user, setUser } = useUser();
 
   const handleLogout = () => {
     logout();
+    setUser(null);
     navigate("/");
   };
 

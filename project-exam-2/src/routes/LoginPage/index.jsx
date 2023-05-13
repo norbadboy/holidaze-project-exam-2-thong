@@ -5,9 +5,11 @@ import { Card } from "react-bootstrap";
 import { loginFunction } from "../../api/auth/login.mjs";
 import { useNavigate, Link } from "react-router-dom";
 import styles from "../../styles/login.module.css";
+import { useUser } from "../../contexts/userContext";
 
 const Login = () => {
   const navigate = useNavigate();
+  const { setUser } = useUser();
 
   // only for testing. remove later
   /**
@@ -40,6 +42,7 @@ const Login = () => {
   const onSubmit = async (data, { setErrors }) => {
     try {
       const response = await loginFunction(data);
+      setUser(response);
 
       if (response.venueManager) {
         navigate("/manager");
