@@ -9,7 +9,7 @@ import { useSearchParams } from "react-router-dom";
 
 const url = API_PATH + "/venues";
 
-function HomePage() {
+function HomePageManager() {
   const [productLimit, setProductLimit] = useState(24);
   const limit = 96;
   const { data, loading, error } = useAPI(url + `?_limit=${limit}&_sort=id&_order=desc`);
@@ -18,6 +18,12 @@ function HomePage() {
 
   const searchText = searchParams.get("search");
 
+  /**
+   * Filter products based on search text
+   * @param {string} searchText
+   * @param {array} data
+   * @returns {array} filteredProducts
+   */
   useEffect(() => {
     if (searchText && data.length > 0) {
       const filteredProducts = data.filter((product) => {
@@ -47,7 +53,7 @@ function HomePage() {
     <div className="homePageContainer px-2">
       <div className="homePageTitle--container mt-5 mb-4">
         <Card className="homePageTitle--card d-flex p-2 flex-column justify-content-center align-items-center">
-          <h4>Here goes filters</h4>
+          <h4>Manager Site</h4>
         </Card>
       </div>
       <div className="mb-4">
@@ -69,4 +75,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default HomePageManager;

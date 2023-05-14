@@ -15,7 +15,7 @@ code {
   --primary-light: #ff66bd;
   --primary-dark: #a70c59;
   --secondary: #f2bfbf;
-  --secondary-light: #f7e6e6;
+  --secondary-light: #f7e6e6c7;
   --secondary-dark: #b98b8b;
   --success: #36b37e;
   --success-light: #79f2c0;
@@ -27,7 +27,12 @@ code {
   --danger-light: #ff8f71;
   --danger-dark: #b21f00;
   --neutral-0: #ffffff;
+  --neutral-100: #f8f9fa;
+  --neutral-200: #e9ecef;
+  --neutral-300: #dee2e6;
+  --neutral-400: #ced4da;
   --background-footer: #f8f9fa;
+  --dark: #000000bd;
 }
 
 * {

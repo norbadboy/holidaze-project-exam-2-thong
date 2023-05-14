@@ -1,41 +1,214 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../pictures/logo.png";
 import styles from "../styles/header.module.css";
 import { Nav, Navbar, Container } from "react-bootstrap";
+import defaultUser from "../pictures/defaultUser.png";
+import { useState, useRef, useEffect } from "react";
+import { FaBars } from "react-icons/fa";
+import { logout } from "../api/auth/logout.mjs";
+import { useUser } from "../contexts/userContext";
 
-function NavbarComponent() {
+function LoggedOutHeader() {
+  const [expanded, setExpanded] = useState(false);
+  const navbarRef = useRef(null);
+  const navigate = useNavigate();
+  const { user, setUser } = useUser();
+
+  const handleLogout = () => {
+    logout();
+    setUser(null);
+    navigate("/");
+  };
+
+  const brandLink = user && user.venueManager ? "/manager" : "/user";
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (navbarRef.current && !navbarRef.current.contains(event.target)) {
+        setExpanded(false);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
   return (
     <Navbar
+      ref={navbarRef}
       collapseOnSelect
       bg="light"
       expand="xxxl"
       className={styles.navbarContainer}
       fixed="top"
+      expanded={expanded}
     >
-      <Container className="d-flex justify-content-space-between">
+      <Container className="d-flex">
         <div className="d-flex align-items-center">
           <Navbar.Brand className="logoContainer">
-            <Link to="/">
-              <img src={logo} alt="logo" className="logoImage" />
-            </Link>
+            {user ? (
+              <Link to={brandLink}>
+                <img src={logo} alt="logo" className={styles.logo} />
+              </Link>
+            ) : (
+              <Link to="/">
+                <img src={logo} alt="logo" className={styles.logo} />
+              </Link>
+            )}
           </Navbar.Brand>
         </div>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" className={styles.navbarToggle} />
+        {user && (
+          <Navbar.Toggle
+            aria-controls="basic-navbar-nav"
+            className={styles.pillToggle}
+            onClick={() => setExpanded(expanded ? false : "expanded")}
+            onMouseDown={(e) => e.preventDefault()}
+          >
+            <div className="d-flex align-items-center">
+              <span>
+                <FaBars className={styles.customHamBars} />
+              </span>
+              {user && <img src={user.avatar} alt="user avatar" className={styles.avatarImage} />}
+            </div>
+          </Navbar.Toggle>
+        )}
+        {!user && (
+          <Navbar.Toggle
+            aria-controls="basic-navbar-nav"
+            className={`${styles.navbarToggle} ${styles.pillToggle}`}
+            onClick={() => setExpanded(expanded ? false : "expanded")}
+            onMouseDown={(e) => e.preventDefault()}
+          >
+            <div className="d-flex align-items-center">
+              <span>
+                <FaBars className={styles.customHamBars} />
+              </span>
+              <img src={defaultUser} alt="default avatar" className={styles.avatarImage} />
+            </div>
+          </Navbar.Toggle>
+        )}
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className={styles.navItemsContainer}>
-            <Nav.Link href="/register" className="d-flex justify-content-end">
-              <strong>Sign Up</strong>
-            </Nav.Link>
-            <Nav.Link href="/login" className="d-flex justify-content-end">
-              Login
-            </Nav.Link>
-            <Nav.Link href="/" className="d-flex justify-content-end">
-              Home
-            </Nav.Link>
-            <Nav.Link href="/admin" className="d-flex justify-content-end">
-              Holidaze your home
-            </Nav.Link>
-          </Nav>
+          <div className={styles.navItemsContainer}>
+            <Nav className={styles.navItemsBody}>
+              {user ? (
+                <>
+                  {user.venueManager ? (
+                    <div>
+                      <Nav.Link
+                        as={Link}
+                        to="/profile"
+                        className={styles.navLink}
+                        onClick={() => setExpanded(false)}
+                      >
+                        Profile
+                      </Nav.Link>
+                      <Nav.Link
+                        as={Link}
+                        to="/manage-venue"
+                        className={styles.navLink}
+                        onClick={() => setExpanded(false)}
+                      >
+                        Manage Venue
+                      </Nav.Link>
+                      <Nav.Link
+                        as={Link}
+                        to="/bookings"
+                        className={styles.navLink}
+                        onClick={() => setExpanded(false)}
+                      >
+                        Bookings
+                      </Nav.Link>
+                      <div className={styles.breakLine} />
+                      <Nav.Link
+                        as={Link}
+                        to="/manager"
+                        className={styles.navLink}
+                        onClick={() => setExpanded(false)}
+                      >
+                        Home
+                      </Nav.Link>
+                      <Nav.Link
+                        onClick={() => {
+                          handleLogout();
+                          setExpanded(false);
+                        }}
+                        className={styles.navLink}
+                      >
+                        <strong>Log out</strong>
+                      </Nav.Link>
+                    </div>
+                  ) : (
+                    <div className="">
+                      <Nav.Link
+                        as={Link}
+                        to="/profile"
+                        className={styles.navLink}
+                        onClick={() => setExpanded(false)}
+                      >
+                        Profile
+                      </Nav.Link>
+                      <Nav.Link
+                        as={Link}
+                        to="/bookings"
+                        className={styles.navLink}
+                        onClick={() => setExpanded(false)}
+                      >
+                        Bookings
+                      </Nav.Link>
+                      <div className={styles.breakLine} />
+                      <Nav.Link
+                        as={Link}
+                        to="/user"
+                        className={styles.navLink}
+                        onClick={() => setExpanded(false)}
+                      >
+                        Home
+                      </Nav.Link>
+                      <Nav.Link
+                        onClick={() => {
+                          handleLogout();
+                          setExpanded(false);
+                        }}
+                        className={styles.navLink}
+                      >
+                        <strong>Log out</strong>
+                      </Nav.Link>
+                    </div>
+                  )}
+                </>
+              ) : (
+                <>
+                  <Nav.Link
+                    as={Link}
+                    to="/register"
+                    className={styles.navLink}
+                    onClick={() => setExpanded(false)}
+                  >
+                    <strong>Sign up</strong>
+                  </Nav.Link>
+                  <Nav.Link
+                    as={Link}
+                    to="/login"
+                    className={styles.navLink}
+                    onClick={() => setExpanded(false)}
+                  >
+                    Log in
+                  </Nav.Link>
+                  <Nav.Link
+                    as={Link}
+                    to="/"
+                    className={styles.navLink}
+                    onClick={() => setExpanded(false)}
+                  >
+                    Home
+                  </Nav.Link>
+                </>
+              )}
+            </Nav>
+          </div>
         </Navbar.Collapse>
       </Container>
     </Navbar>
@@ -44,9 +217,9 @@ function NavbarComponent() {
 
 function Header() {
   return (
-    <header>
-      <NavbarComponent />
-    </header>
+    <div>
+      <LoggedOutHeader />
+    </div>
   );
 }
 

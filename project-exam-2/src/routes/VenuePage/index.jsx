@@ -1,19 +1,24 @@
 import { API_PATH } from "../../api/constant.mjs";
 import { useParams } from "react-router-dom";
 import useAPI from "../../api/apiHook";
-import { Row, Col, Card, Button } from "react-bootstrap";
+import { Row, Col, Card } from "react-bootstrap";
 import { FaWifi, FaParking } from "react-icons/fa";
 import { MdPets, MdFreeBreakfast } from "react-icons/md";
 import styles from "../../styles/venue.module.css";
+import { StyledButton } from "../../styles/styledComponents/styledButton.jsx";
 
 const url = API_PATH + "/venues";
 
 function VenuePage() {
   let { id } = useParams();
   const { data: venue, loading, error } = useAPI(`${url}/${id}?_owner=true`);
-  console.log(venue);
   const media = venue.media;
   const created = venue.created;
+
+  // check if a token is present in local storage
+  // if so, show the booking button
+  const token = localStorage.getItem("token");
+  const showBookingButton = token ? true : false;
 
   if (loading) {
     return <div>Loading...</div>;
@@ -48,6 +53,7 @@ function VenuePage() {
               <div className="mt-5">
                 <Card.Text>Price: {venue.price}</Card.Text>
                 <Card.Text>Description: {venue.description}</Card.Text>
+                {showBookingButton && <StyledButton className="mt-5">Book</StyledButton>}
               </div>
               <div className="amenitiesContainer mt-4">
                 <h5>What this place offers</h5>

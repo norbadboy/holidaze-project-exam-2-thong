@@ -1,0 +1,12 @@
+.loginBody {
+  margin-top: 150px;
+}
+.loginFieldText {
+  padding: 17px;
+  height: 42px;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid black;
+  margin-bottom: 1rem;
+  font-size: 1.14rem;
+}
