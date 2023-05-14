@@ -12,6 +12,7 @@ import HomePageManager from "./routes/LoggedInManager";
 import HomePageUser from "./routes/LoggedInUser";
 import { UserProvider } from "./contexts/userContext";
 import BookingContextProvider from "./contexts/bookingContext";
+import ProfilePage from "./routes/ProfilePage";
 
 function Layout() {
   return (
@@ -35,6 +36,7 @@ function App() {
             <Route path="/:id" element={<VenuePage />} />
             <Route path="/manager" element={<HomePageManager />} />
             <Route path="/user" element={<HomePageUser />} />
+            <Route path="/profile" element={<ProfilePage />} />
           </Route>
         </Routes>
       </UserProvider>

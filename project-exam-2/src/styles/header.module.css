@@ -54,7 +54,7 @@
   height: 40px;
   border-radius: 50%;
   margin-left: 15px;
-  object-fit: fill;
+  object-fit: cover;
 }
 .customHamBars {
   display: flex;

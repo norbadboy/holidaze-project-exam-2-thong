@@ -6,7 +6,7 @@ import "../styles/footer.css";
 
 function Footer() {
   return (
-    <div className="footerContainer mb-3 d-flex">
+    <div className="footerContainer mb-3 mt-5 d-flex">
       <div className="d-flex flex-grow-1 justify-content-between">
         <span className="d-flex p-3">
           <p>&copy; {new Date().getFullYear()} Holidaze, Inc.</p>
