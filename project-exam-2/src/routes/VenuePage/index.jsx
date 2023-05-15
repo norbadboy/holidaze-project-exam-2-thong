@@ -41,7 +41,7 @@ function VenuePage() {
             <div className="venueImgContainer" style={{ width: "500px" }}>
               <div className="d-flex">
                 {media?.map((image) => (
-                  <Card.Img variant="top" src={image} alt={venue.title} />
+                  <Card.Img key={image} variant="top" src={image} alt={venue.title} />
                 ))}
               </div>
             </div>

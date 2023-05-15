@@ -1,7 +1,7 @@
 import { updateAvatar } from "../../api/profile/updateAvatar.mjs";
 import { GetProfile } from "../../api/profile/getProfile.jsx";
 import { useUser } from "../../contexts/userContext.jsx";
-import { Card, Row, Col, Modal, Button } from "react-bootstrap";
+import { Row, Col, Modal, Button } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { StyledButton } from "../../styles/styledComponents/styledButton.jsx";
 import styles from "../../styles/header.module.css";

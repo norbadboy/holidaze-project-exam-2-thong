@@ -99,27 +99,29 @@ function LoggedOutHeader() {
                     <div>
                       <Nav.Link
                         as={Link}
-                        to="/profile"
-                        className={styles.navLink}
-                        onClick={() => setExpanded(false)}
-                      >
-                        Profile
-                      </Nav.Link>
-                      <Nav.Link
-                        as={Link}
-                        to="/manage-venue"
-                        className={styles.navLink}
-                        onClick={() => setExpanded(false)}
-                      >
-                        Manage Venue
-                      </Nav.Link>
-                      <Nav.Link
-                        as={Link}
                         to="/bookings"
                         className={styles.navLink}
                         onClick={() => setExpanded(false)}
                       >
                         Bookings
+                      </Nav.Link>
+                      <div className={styles.breakLine} />
+
+                      <Nav.Link
+                        as={Link}
+                        to="/profile"
+                        className={styles.navLink}
+                        onClick={() => setExpanded(false)}
+                      >
+                        Account
+                      </Nav.Link>
+                      <Nav.Link
+                        as={Link}
+                        to="/manage-venues"
+                        className={styles.navLink}
+                        onClick={() => setExpanded(false)}
+                      >
+                        Holidaze your venue
                       </Nav.Link>
                       <div className={styles.breakLine} />
                       <Nav.Link
@@ -144,19 +146,19 @@ function LoggedOutHeader() {
                     <div className="">
                       <Nav.Link
                         as={Link}
-                        to="/profile"
-                        className={styles.navLink}
-                        onClick={() => setExpanded(false)}
-                      >
-                        Profile
-                      </Nav.Link>
-                      <Nav.Link
-                        as={Link}
                         to="/bookings"
                         className={styles.navLink}
                         onClick={() => setExpanded(false)}
                       >
                         Bookings
+                      </Nav.Link>
+                      <Nav.Link
+                        as={Link}
+                        to="/profile"
+                        className={styles.navLink}
+                        onClick={() => setExpanded(false)}
+                      >
+                        Account
                       </Nav.Link>
                       <div className={styles.breakLine} />
                       <Nav.Link
