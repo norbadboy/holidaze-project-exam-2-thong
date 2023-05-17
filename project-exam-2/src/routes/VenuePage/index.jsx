@@ -12,7 +12,7 @@ const url = API_PATH + "/venues";
 function VenuePage() {
   let { id } = useParams();
   const { data: venue, loading, error } = useAPI(`${url}/${id}?_owner=true`);
-  const media = venue.media;
+  const media = venue?.media;
   const created = venue.created;
 
   // check if a token is present in local storage
@@ -40,14 +40,14 @@ function VenuePage() {
           <Col>
             <div className="venueImgContainer" style={{ width: "500px" }}>
               <div className="d-flex">
-                {media?.map((image) => (
-                  <Card.Img key={image} variant="top" src={image} alt={venue.title} />
+                {media?.map((image, index) => (
+                  <Card.Img key={`${image}-${index}`} variant="top" src={image} alt={venue.title} />
                 ))}
               </div>
             </div>
             <Card.Body className="mt-5">
               <div className="quickInfoContainer">
-                <h5>Entire home hosted by {venue.owner?.name}</h5>
+                <h5>Entire venue hosted by {venue.owner?.name}</h5>
                 <Card.Text>Max guests: {venue.maxGuests}</Card.Text>
               </div>
               <div className="mt-5">

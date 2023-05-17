@@ -53,9 +53,9 @@ export function VenuesProvider({ children }) {
   async function updateVenueById(venueId, venueData) {
     if (user && user.venueManager) {
       try {
-        await updateVenue(venueId, venueData);
+        const updatedVenue = await updateVenue(venueId, venueData);
         setVenues((prevVenues) =>
-          prevVenues.map((venue) => (venue.id === venueId ? { ...venue, ...venueData } : venue))
+          prevVenues.map((venue) => (venue.id === venueId ? updatedVenue : venue))
         );
       } catch (error) {
         console.error("Error updating venue:", error);
@@ -70,9 +70,13 @@ export function VenuesProvider({ children }) {
     if (user && user.venueManager) {
       try {
         await deleteVenue(venueId);
-        setVenues((prevVenues) => prevVenues.filter((venue) => venue.id !== venueId));
+        setVenues((prevVenues) => {
+          const updatedVenues = prevVenues.filter((venue) => venue.id !== venueId);
+          return updatedVenues;
+        });
+        window.location.reload();
       } catch (error) {
-        console.error("Error deleting venue:", error);
+        console.error("Error deleting venue:", error); // Check the error if there's one
       }
     } else {
       console.error("User is not authorized to delete a venue");
