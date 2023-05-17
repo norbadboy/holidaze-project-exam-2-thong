@@ -1,6 +1,117 @@
 .metaIcon {
-  width: 25px;
-  height: 25px;
-  margin-right: 10px;
-  margin-bottom: 10px;
+  width: 24px;
+  height: 24px;
+  margin-right: 12px;
+  margin-top: 4px;
+}
+.verifiedIcon {
+  width: 20px;
+  height: 20px;
+  margin-right: 4px;
+  color: var(--success);
+}
+.dot {
+  height: 5px;
+  width: 5px;
+  background-color: var(--dark);
+  border-radius: 50%;
+}
+.titleContainer_location {
+  text-transform: capitalize;
+  text-decoration: underline;
+  font-weight: 500;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+}
+.ownerContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.descriptionBody {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+/* Media */
+.venueImgContainer {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+.viewAllButton {
+  position: absolute;
+  bottom: 15px;
+  right: 20px;
+  color: white;
+}
+.venueImgFirst {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.venueImgOtherSections {
+  display: flex;
+  flex-direction: column;
+}
+.ownerAvatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 15px;
+}
+
+/* datepicker */
+.datesAndGuestsContainer {
+  max-width: 400px;
+}
+.datePickerContainer {
+  width: 100%;
+  display: flex;
+}
+
+.datePicker {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--neutral-0);
+  color: black;
+  border: 1px solid var(--neutral-400);
+}
+
+/* guests toggle */
+.guestsDropdownToggle {
+  width: 100%;
+  height: 80px;
+  padding: 10px;
+  background-color: var(--neutral-0);
+  color: black;
+  border: 1px solid var(--neutral-400);
+}
+.guestsDropdownToggle:hover {
+  background-color: var(--neutral-200);
+  color: black;
+  border: 1px solid var(--neutral-400);
+}
+.guestsDropdownToggle::after {
+  display: none;
+}
+
+/* Location */
+.addressContainer {
+  text-transform: capitalize;
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 999px) {
+  .venueImgOtherSections {
+    display: none;
+  }
+  .datePickerContainer {
+    flex-direction: column;
+  }
 }

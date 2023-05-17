@@ -8,7 +8,7 @@ function ProductCard(props) {
   const { product } = props;
   return (
     <Card className="homePageCard">
-      <Link to={`/${product.id}`} style={{ textDecoration: "none" }}>
+      <Link to={`/${product.id}`} key={product.id} style={{ textDecoration: "none" }}>
         <Card.Img
           variant="top"
           src={product.media}

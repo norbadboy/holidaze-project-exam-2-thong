@@ -13,6 +13,8 @@ import HomePageUser from "./routes/LoggedInUser";
 import { UserProvider } from "./contexts/userContext";
 import BookingContextProvider from "./contexts/bookingContext";
 import ProfilePage from "./routes/ProfilePage";
+import { VenuesProvider } from "./contexts/venuesContext";
+import ManageVenues from "./routes/ManageVenues";
 
 function Layout() {
   return (
@@ -28,17 +30,20 @@ function App() {
   return (
     <BookingContextProvider>
       <UserProvider>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/register" element={<SignUpForm />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/:id" element={<VenuePage />} />
-            <Route path="/manager" element={<HomePageManager />} />
-            <Route path="/user" element={<HomePageUser />} />
-            <Route path="/profile" element={<ProfilePage />} />
-          </Route>
-        </Routes>
+        <VenuesProvider>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/register" element={<SignUpForm />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/:id" element={<VenuePage />} />
+              <Route path="/manager" element={<HomePageManager />} />
+              <Route path="/user" element={<HomePageUser />} />
+              <Route path="/profile" element={<ProfilePage />} />
+              <Route path="/manage-venues" element={<ManageVenues />} />
+            </Route>
+          </Routes>
+        </VenuesProvider>
       </UserProvider>
     </BookingContextProvider>
   );

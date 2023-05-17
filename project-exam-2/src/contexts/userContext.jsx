@@ -26,7 +26,7 @@ export const UserProvider = ({ children }) => {
   }, []);
 
   if (isLoading) {
-    return <div>Loading...</div>; // Or your preferred loading component
+    return <div>Loading...</div>;
   }
 
   return <UserContext.Provider value={{ user, setUser }}>{children}</UserContext.Provider>;
