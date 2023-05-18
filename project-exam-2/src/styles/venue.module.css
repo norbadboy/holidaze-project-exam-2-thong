@@ -16,6 +16,7 @@
   background-color: var(--dark);
   border-radius: 50%;
 }
+
 .titleContainer_location {
   text-transform: capitalize;
   text-decoration: underline;
@@ -68,7 +69,8 @@
 
 /* datepicker */
 .datesAndGuestsContainer {
-  max-width: 400px;
+  max-width: 450px;
+  max-height: 320px;
 }
 .datePickerContainer {
   width: 100%;

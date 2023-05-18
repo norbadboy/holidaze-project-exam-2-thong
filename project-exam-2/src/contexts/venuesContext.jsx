@@ -39,7 +39,7 @@ export function VenuesProvider({ children }) {
       try {
         const response = await createVenue(venueData);
         setVenues((prevVenues) => [...prevVenues, response]);
-        // Optionally, you can fetch the venues again to ensure the latest data is displayed
+        // Fetch the venues again to ensure the latest data is displayed
         fetchVenues();
       } catch (error) {
         console.error("Error creating venue:", error);

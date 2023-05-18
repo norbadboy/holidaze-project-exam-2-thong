@@ -99,7 +99,7 @@ function LoggedOutHeader() {
                     <div>
                       <Nav.Link
                         as={Link}
-                        to="/bookings"
+                        to="/bookings-manager"
                         className={styles.navLink}
                         onClick={() => setExpanded(false)}
                       >
