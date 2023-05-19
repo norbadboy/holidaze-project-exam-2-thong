@@ -72,9 +72,6 @@ function VenuePage() {
   const handleClose = () => setShowModal(false);
   const handleShow = () => setShowModal(true);
 
-  // check if a token is present in local storage
-  // if so, show the booking button
-
   // guest dropdown
   const [guests, setGuests] = useState(1);
   const handleSelect = (e, selectedGuests) => {

@@ -1,0 +1,31 @@
+.myBookingsImage {
+  border-radius: 4%;
+  height: 350px;
+  width: 100%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+/* Bookings card */
+.myBookingsCard_Container {
+  border: none;
+  margin-bottom: 50px;
+  cursor: pointer;
+}
+.myBookingsCard_Title {
+  font-size: 21px;
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+.myBookingsCard_Subtitle {
+  font-size: 17px;
+  margin-top: 3px;
+}
+.myBookingsCard_Text {
+  font-size: 18px;
+}
+.myBookingsCard_Date {
+  font-size: 15px;
+  margin-top: 15px;
+}

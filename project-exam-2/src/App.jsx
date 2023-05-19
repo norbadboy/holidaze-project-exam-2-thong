@@ -11,10 +11,10 @@ import Login from "./routes/LoginPage";
 import HomePageManager from "./routes/LoggedInManager";
 import HomePageUser from "./routes/LoggedInUser";
 import { UserProvider } from "./contexts/userContext";
-import BookingContextProvider from "./contexts/bookingContext";
-import ProfilePage from "./routes/ProfilePage";
 import { VenuesProvider } from "./contexts/venuesContext";
+import ProfilePage from "./routes/ProfilePage";
 import ManageVenues from "./routes/ManageVenues";
+import UserBookings from "./routes/Bookings";
 
 function Layout() {
   return (
@@ -28,24 +28,23 @@ function Layout() {
 
 function App() {
   return (
-    <BookingContextProvider>
-      <UserProvider>
-        <VenuesProvider>
-          <Routes>
-            <Route path="/" element={<Layout />}>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/register" element={<SignUpForm />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/:id" element={<VenuePage />} />
-              <Route path="/manager" element={<HomePageManager />} />
-              <Route path="/user" element={<HomePageUser />} />
-              <Route path="/profile" element={<ProfilePage />} />
-              <Route path="/manage-venues" element={<ManageVenues />} />
-            </Route>
-          </Routes>
-        </VenuesProvider>
-      </UserProvider>
-    </BookingContextProvider>
+    <UserProvider>
+      <VenuesProvider>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/register" element={<SignUpForm />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/:id" element={<VenuePage />} />
+            <Route path="/manager" element={<HomePageManager />} />
+            <Route path="/user" element={<HomePageUser />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/manage-venues" element={<ManageVenues />} />
+            <Route path="/bookings" element={<UserBookings />} />
+          </Route>
+        </Routes>
+      </VenuesProvider>
+    </UserProvider>
   );
 }
 

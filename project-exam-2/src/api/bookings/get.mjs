@@ -4,8 +4,8 @@ import { autFetch } from "../headers.mjs";
 const action = "/profiles";
 const method = "GET";
 
-export async function getAllBookingsByProfile(name) {
-  const endpoint = `${API_PATH}${action}/${name}/bookings?_customer=true&_venue=true`;
+export async function getAllBookingsByProfile(name, sort, sortOrder) {
+  const endpoint = `${API_PATH}${action}/${name}/bookings?_venue=true&sort=${sort}&sortOrder=${sortOrder}`;
 
   try {
     const response = await autFetch(endpoint, { method });
@@ -13,5 +13,6 @@ export async function getAllBookingsByProfile(name) {
     return data;
   } catch (error) {
     console.error(error);
+    return []; // Return an empty array in case of an error
   }
 }
