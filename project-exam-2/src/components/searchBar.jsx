@@ -6,12 +6,10 @@ import { Button, Form, InputGroup } from "react-bootstrap";
 import { useSearchParams } from "react-router-dom";
 import styles from "../styles/header.module.css";
 import { FaSearch } from "react-icons/fa";
+import imageNotAvailable from "../pictures/imageNotAvailable.png";
 
-const url = API_PATH + "/venues";
-
-function SearchBar() {
+function SearchBar({ products }) {
   const [value, setValue] = useState("");
-  const { data: products } = useAPI(url);
   let [, setSearchParams] = useSearchParams();
   const [showDropdown, setShowDropdown] = useState(false);
 
@@ -21,9 +19,7 @@ function SearchBar() {
       e.preventDefault();
       const form = e.target;
       const searchTerm = form.search.value;
-
       setSearchParams({ search: searchTerm });
-      //   return filteredProducts;
     });
 
   const filteredProducts = products.filter((product) => {
@@ -43,7 +39,6 @@ function SearchBar() {
   const onSearch = (searchTerm) => {
     setValue(searchTerm);
     setShowDropdown(false);
-
     setSearchParams({ search: searchTerm });
   };
 
@@ -75,7 +70,15 @@ function SearchBar() {
                   onClick={() => onSearch(product.name)}
                 >
                   <div className="d-flex">
-                    <img src={product.media} alt={product.name} className={styles.dropdownImage} />
+                    <img
+                      src={
+                        product && product.media && product.media.length > 0
+                          ? product.media[0]
+                          : imageNotAvailable
+                      }
+                      alt={product.name}
+                      className={styles.dropdownImage}
+                    />
                     <div className="mt-1">{product.name}</div>
                   </div>
                 </Dropdown.Item>

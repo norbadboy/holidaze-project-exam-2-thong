@@ -11,7 +11,7 @@ function ProductCard(props) {
       <Link to={`/${product.id}`} key={product.id} style={{ textDecoration: "none" }}>
         <Card.Img
           variant="top"
-          src={product.media}
+          src={product.media[0]}
           onError={(e) => {
             e.target.onerror = null;
             e.target.src = imageNotAvailable;

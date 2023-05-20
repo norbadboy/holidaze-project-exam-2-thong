@@ -4,7 +4,7 @@ import { autFetch } from "../headers.mjs";
 const action = "/venues";
 
 export async function getVenues() {
-  const getVenuesUrl = `${API_PATH}${action}?_owner=true&_bookings=true`;
+  const getVenuesUrl = `${API_PATH}${action}?_owner=true`;
 
   const response = await autFetch(getVenuesUrl);
 

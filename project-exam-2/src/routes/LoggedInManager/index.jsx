@@ -12,7 +12,7 @@ const url = API_PATH + "/venues";
 function HomePageManager() {
   const [productLimit, setProductLimit] = useState(24);
   const limit = 96;
-  const { data, loading, error } = useAPI(url + `?_limit=${limit}&_sort=id&_order=desc`);
+  const { data, loading, error } = useAPI(url + `?limit=${limit}&sort=created&_order=desc`);
   let [searchParams] = useSearchParams();
   const [items, setItems] = useState([]);
 
@@ -57,7 +57,7 @@ function HomePageManager() {
         </Card>
       </div>
       <div className="mb-4">
-        <SearchBar />
+        <SearchBar products={data} />
       </div>
       <Row>
         {productsToRender.slice(0, productLimit).map((product) => (
