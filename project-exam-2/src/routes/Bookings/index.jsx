@@ -1,7 +1,5 @@
 import { useUser } from "../../contexts/userContext";
 import { Row, Col, Card, Modal, Button, Dropdown } from "react-bootstrap";
-import { StyledButton } from "../../styles/styledComponents/styledButton";
-import { StyledInput } from "../../styles/styledComponents/styledForm";
 import styles from "../../styles/bookings.module.css";
 import { useState, useEffect, useCallback } from "react";
 import { getAllBookingsByProfile } from "../../api/bookings/get.mjs";
