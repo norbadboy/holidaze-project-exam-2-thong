@@ -1,4 +1,4 @@
-import { Row, Col, Card } from "react-bootstrap";
+import { Row, Col, Card, Button } from "react-bootstrap";
 import { useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { API_PATH } from "../../api/constant.mjs";
@@ -25,13 +25,33 @@ function HomePage() {
   const [selectedCountry] = useState("");
   const [countryFilteredItems, setCountryFilteredItems] = useState([]);
 
+  // State to track the current active filters
+  const [activeFilters, setActiveFilters] = useState({
+    country: "",
+    // price: "", // Uncomment and set initial state for other filters
+    // name: "", // For example
+  });
+
   const handleFilter = (country) => {
     if (country) {
       const filteredData = data.filter((item) => item.location.country === country);
       setCountryFilteredItems(filteredData);
+      setActiveFilters((prevFilters) => ({ ...prevFilters, country }));
     } else {
       setCountryFilteredItems(data);
+      setActiveFilters((prevFilters) => ({ ...prevFilters, country: "" }));
     }
+  };
+
+  // Clear all filters
+  const handleClearFilters = () => {
+    setProductLimit(24);
+    setItems(data);
+    setCountryFilteredItems(data);
+    setActiveFilters({
+      // reset activeFilters state
+      country: "",
+    });
   };
 
   useEffect(() => {
@@ -71,8 +91,18 @@ function HomePage() {
       </div>
       <div className="mb-4">
         <Card className={styles.homePageTitle_Card}>
-          <CountriesFilter items={data} onFilter={handleFilter} />
+          <div>
+            <CountriesFilter items={data} onFilter={handleFilter} />
+          </div>
+          <div className="d-flex align-items-center">
+            <Button onClick={handleClearFilters}>Clear Filters</Button>
+          </div>
         </Card>
+        <div className="mt-3 d-flex justify-content-center">
+          {activeFilters.country && (
+            <p className={styles.activeFilters_Item}>{activeFilters.country}</p>
+          )}
+        </div>
       </div>
       <Row>
         {productsToRender.slice(0, productLimit).map((product) => (

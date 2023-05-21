@@ -6,6 +6,7 @@
 .homePageTitle_Card {
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
 }
 
 .filterButton {
@@ -29,6 +30,12 @@
 }
 .filterList_Item:hover {
   background-color: var(--secondary-light);
+}
+.activeFilters_Item {
+  border: 1px solid var(--dark);
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 15px;
 }
 
 @media screen and (min-width: 768px) {
