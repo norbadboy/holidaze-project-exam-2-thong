@@ -29,6 +29,7 @@ function SearchBar({ products }) {
     setValue(searchTerm);
     if (searchTerm === "") {
       setShowDropdown(false);
+      setSearchParams({ search: "" }); // clear search param when input is empty
     } else {
       setShowDropdown(true);
     }

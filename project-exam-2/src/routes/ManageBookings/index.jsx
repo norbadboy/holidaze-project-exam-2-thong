@@ -1,9 +1,9 @@
-import { getBookingOfVenueByProfile } from "../../api/venues/getByProfile.mjs";
-import { useUser } from "../../contexts/userContext.jsx";
-import { Row, Col, Card, Modal, Button, Dropdown } from "react-bootstrap";
+import { Row, Col, Card, Dropdown } from "react-bootstrap";
 import { useState, useEffect, useCallback } from "react";
-import styles from "../../styles/manageBookings.module.css";
+import { useUser } from "../../contexts/userContext.jsx";
+import { getBookingOfVenueByProfile } from "../../api/venues/getByProfile.mjs";
 import BookingsModal from "../../components/manageBookingsModal.jsx";
+import styles from "../../styles/manageBookings.module.css";
 import { StyledButton } from "../../styles/styledComponents/styledButton.jsx";
 
 function ManageBookings() {

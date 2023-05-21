@@ -1,22 +1,38 @@
 import { Row, Col, Card } from "react-bootstrap";
-import ProductCard from "../../components/productCard.jsx";
+import { useSearchParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { API_PATH } from "../../api/constant.mjs";
 import useAPI from "../../api/apiHook.jsx";
-import { useState, useEffect } from "react";
 import { StyledButton } from "../../styles/styledComponents/styledButton.jsx";
+import ProductCard from "../../components/productCard.jsx";
 import SearchBar from "../../components/searchBar.jsx";
-import { useSearchParams } from "react-router-dom";
+import CountriesFilter from "../../components/homePageFilter.jsx";
+import styles from "../../styles/homePage.module.css";
 
 const url = API_PATH + "/venues";
 
 function HomePage() {
   const [productLimit, setProductLimit] = useState(24);
   const limit = 96;
-  const { data, loading, error } = useAPI(url + `?limit=${limit}&sort=created&_order=desc`);
+  const { data, loading, error } = useAPI(
+    url + `?_owner=true&_bookings=true&limit=${limit}&sort=created&_order=desc`
+  );
   let [searchParams] = useSearchParams();
   const [items, setItems] = useState([]);
 
   const searchText = searchParams.get("search");
+
+  const [selectedCountry] = useState("");
+  const [countryFilteredItems, setCountryFilteredItems] = useState([]);
+
+  const handleFilter = (country) => {
+    if (country) {
+      const filteredData = data.filter((item) => item.location.country === country);
+      setCountryFilteredItems(filteredData);
+    } else {
+      setCountryFilteredItems(data);
+    }
+  };
 
   useEffect(() => {
     if (searchText && data.length > 0) {
@@ -29,7 +45,12 @@ function HomePage() {
     }
   }, [searchText, data]);
 
-  const productsToRender = searchText ? items : data;
+  useEffect(() => {
+    handleFilter(selectedCountry);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedCountry, data]);
+
+  const productsToRender = searchText ? items : countryFilteredItems;
 
   const handleLoadMore = () => {
     setProductLimit(productLimit + 24);
@@ -44,14 +65,14 @@ function HomePage() {
   }
 
   return (
-    <div className="homePageContainer px-2">
-      <div className="homePageTitle--container mt-5 mb-4">
-        <Card className="homePageTitle--card d-flex p-2 flex-column justify-content-center align-items-center">
-          <h4>Here goes filters</h4>
-        </Card>
+    <div className={styles.homePageContainer}>
+      <div className="">
+        <SearchBar products={data} />
       </div>
       <div className="mb-4">
-        <SearchBar products={data} />
+        <Card className={styles.homePageTitle_Card}>
+          <CountriesFilter items={data} onFilter={handleFilter} />
+        </Card>
       </div>
       <Row>
         {productsToRender.slice(0, productLimit).map((product) => (

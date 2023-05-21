@@ -1,0 +1,48 @@
+.homePageCard {
+  margin-bottom: 40px;
+}
+
+/* Filter */
+.homePageTitle_Card {
+  display: flex;
+  flex-direction: row;
+}
+
+.filterButton {
+  background-color: white;
+  color: var(--dark);
+  border: none;
+  display: flex;
+  flex-direction: column;
+}
+.filterButton_Icon {
+  font-size: 1.4rem;
+  margin: 0 auto;
+  margin-bottom: 7px;
+}
+.filterButton:hover {
+  background-color: var(--secondary-light);
+  color: var(--dark);
+}
+.filterList_Container {
+  cursor: pointer;
+}
+.filterList_Item:hover {
+  background-color: var(--secondary-light);
+}
+
+@media screen and (min-width: 768px) {
+  .homePageContainer {
+    margin-top: 120px;
+  }
+  .homePageTitle_Card {
+    padding: 10px 5px;
+    margin-top: 40px;
+  }
+  .homePageCard img {
+    height: 280px;
+    width: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+  }
+}

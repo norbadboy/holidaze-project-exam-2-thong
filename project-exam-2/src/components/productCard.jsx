@@ -1,13 +1,13 @@
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import "../styles/homePage.css";
+import styles from "../styles/homePage.module.css";
 import imageNotAvailable from "../pictures/imageNotAvailable.png";
 import { FaStar } from "react-icons/fa";
 
 function ProductCard(props) {
   const { product } = props;
   return (
-    <Card className="homePageCard">
+    <Card className={styles.homePageCard}>
       <Link to={`/${product.id}`} key={product.id} style={{ textDecoration: "none" }}>
         <Card.Img
           variant="top"
