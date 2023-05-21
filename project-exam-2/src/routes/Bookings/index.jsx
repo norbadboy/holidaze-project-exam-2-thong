@@ -3,7 +3,6 @@ import { Row, Col, Card, Modal, Button, Dropdown } from "react-bootstrap";
 import styles from "../../styles/bookings.module.css";
 import { useState, useEffect, useCallback } from "react";
 import { getAllBookingsByProfile } from "../../api/bookings/get.mjs";
-import "react-datepicker/dist/react-datepicker.css";
 
 function UserBookings() {
   const [userBookings, setUserBookings] = useState([]);

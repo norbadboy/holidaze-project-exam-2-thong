@@ -13,8 +13,9 @@ import HomePageUser from "./routes/LoggedInUser";
 import { UserProvider } from "./contexts/userContext";
 import { VenuesProvider } from "./contexts/venuesContext";
 import ProfilePage from "./routes/ProfilePage";
-import ManageVenues from "./routes/ManageVenues";
 import UserBookings from "./routes/Bookings";
+import ManageVenues from "./routes/ManageVenues";
+import ManageBookings from "./routes/ManageBookings";
 
 function Layout() {
   return (
@@ -41,6 +42,7 @@ function App() {
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/manage-venues" element={<ManageVenues />} />
             <Route path="/bookings" element={<UserBookings />} />
+            <Route path="/manage-bookings" element={<ManageBookings />} />
           </Route>
         </Routes>
       </VenuesProvider>

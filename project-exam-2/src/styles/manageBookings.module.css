@@ -3,14 +3,12 @@
   height: 350px;
   width: 100%;
   object-fit: cover;
-  cursor: pointer;
 }
 
 /* Booking card */
 .manageBookingsCard_Container {
   border: none;
   margin-bottom: 50px;
-  cursor: pointer;
 }
 .manageBookingsCard_Title {
   font-size: 21px;
@@ -24,4 +22,10 @@
 }
 .manageBookingsCard_Date {
   font-size: 15px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+
+.manageBookingsCard_Button {
 }
