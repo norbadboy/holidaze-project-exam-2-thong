@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Modal, Button, ListGroup, Col, Row } from "react-bootstrap";
+import { Modal, Button, ListGroup } from "react-bootstrap";
 import styles from "../styles/homePage.module.css";
 import { FaGlobeAmericas } from "react-icons/fa";
 
