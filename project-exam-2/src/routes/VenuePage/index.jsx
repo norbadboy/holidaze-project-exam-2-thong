@@ -56,7 +56,7 @@ function VenuePage() {
         setTimeout(() => {
           setShowSuccessModal(false);
           navigate("/bookings");
-        }, 2000);
+        }, 1500);
       } else {
         // Handle unsuccessful booking scenario
         console.log("Booking was unsuccessful");
@@ -72,7 +72,7 @@ function VenuePage() {
   const handleClose = () => setShowModal(false);
   const handleShow = () => setShowModal(true);
 
-  // guest dropdown
+  // guests dropdown
   const [guests, setGuests] = useState(1);
   const handleSelect = (e, selectedGuests) => {
     setGuests(e);

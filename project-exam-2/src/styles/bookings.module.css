@@ -29,3 +29,38 @@
   font-size: 15px;
   margin-top: 15px;
 }
+
+/* datepicker */
+.datesAndGuestsContainer {
+  max-width: 450px;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: center;
+  padding: 25px 55px;
+}
+.datePicker {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+/* dropdown */
+.guestsDropdownToggle {
+  width: 100%;
+  height: 80px;
+  padding: 10px;
+  background-color: var(--neutral-0);
+  color: black;
+  border: 1px solid var(--neutral-400);
+}
+.guestsDropdownToggle:hover {
+  background-color: var(--neutral-200);
+  color: black;
+  border: 1px solid var(--neutral-400);
+}
+.guestsDropdownToggle::after {
+  display: none;
+}
