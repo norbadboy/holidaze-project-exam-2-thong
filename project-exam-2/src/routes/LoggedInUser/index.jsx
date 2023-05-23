@@ -14,7 +14,7 @@ const url = API_PATH + "/venues";
 
 function HomePageUser() {
   const [productLimit, setProductLimit] = useState(24);
-  const limit = 96;
+  const limit = 100;
   const { data, loading, error } = useAPI(
     url + `?_owner=true&_bookings=true&limit=${limit}&sort=created&_order=desc`
   );
@@ -49,14 +49,19 @@ function HomePageUser() {
 
   const handlePriceFilter = (range) => {
     if (range) {
-      const [min, max] = range.split("-").map(Number);
-      const filteredData = data.filter((item) => {
-        if (max) {
-          return item.price >= min && item.price <= max;
-        } else {
-          return item.price >= min;
-        }
-      });
+      let filteredData;
+      if (range === "Over 1000") {
+        filteredData = data.filter((item) => item.price > 1000);
+      } else {
+        const [min, max] = range.split("-").map(Number);
+        filteredData = data.filter((item) => {
+          if (max) {
+            return item.price >= min && item.price <= max;
+          } else {
+            return item.price >= min;
+          }
+        });
+      }
       setPriceFilteredItems(filteredData);
       setActiveFilters((prevFilters) => ({ ...prevFilters, price: range }));
       setSelectedPriceRange(range); // Add this line
