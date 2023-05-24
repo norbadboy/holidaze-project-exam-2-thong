@@ -1,36 +1,59 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useContext } from "react";
+import { useUser } from "./userContext";
+import { deleteBooking } from "../api/bookings/delete.mjs";
+import { updateBooking } from "../api/bookings/update.mjs";
+import {} from "../api/bookings/get.mjs";
 
-export const BookingContext = createContext();
+// Create the bookings context
+const BookingsContext = createContext();
 
-function BookingContextProvider({ children }) {
-  const [booking, setBooking] = useState([]);
-
-  function removeElementFromArray(arr, element) {
-    const index = arr.indexOf(element);
-    if (index !== -1) {
-      return arr.slice(0, index).concat(arr.slice(index + 1));
-    }
-    return arr;
-  }
-
-  const addBooking = (venue) => {
-    setBooking([...booking, venue]);
-  };
-
-  const removeBooking = (venueId) => {
-    const newBooking = removeElementFromArray(booking, venueId);
-    setBooking(newBooking);
-  };
-
-  const clearAllBookings = () => {
-    setBooking([]);
-  };
-
-  return (
-    <BookingContext.Provider value={{ booking, addBooking, removeBooking, clearAllBookings }}>
-      {children}
-    </BookingContext.Provider>
-  );
+// Create a custom hook to access the bookings context
+export function useBookings() {
+  return useContext(BookingsContext);
 }
 
-export default BookingContextProvider;
+// Create the BookingsProvider component
+export function BookingsProvider({ children }) {
+  const [bookings, setBookings] = useState([]);
+  const { user } = useUser(); // Get the user from the user context
+
+  // Function to delete a booking (accessible only to logged in users)
+  async function removeBookingById(bookingId) {
+    if (user) {
+      try {
+        await deleteBooking(bookingId);
+        setBookings((prevBookings) => prevBookings.filter((booking) => booking.id !== bookingId));
+      } catch (error) {
+        console.error("Error deleting booking:", error);
+      }
+    } else {
+      console.error("User is not authorized to delete a booking");
+    }
+  }
+
+  // Function to update a booking (accessible only to logged in users)
+  async function updateBookingById(bookingId, bookingData) {
+    if (user) {
+      try {
+        const updatedBooking = await updateBooking(bookingId, bookingData);
+        setBookings((prevBookings) =>
+          prevBookings.map((booking) => (booking.id === bookingId ? updatedBooking : booking))
+        );
+      } catch (error) {
+        console.error("Error updating booking:", error);
+      }
+    } else {
+      console.error("User is not authorized to update a booking");
+    }
+  }
+
+  // Create the value prop for the provider
+  const value = {
+    bookings,
+    removeBookingById,
+    updateBookingById,
+  };
+
+  // Return the provider component with the value prop
+  return <BookingsContext.Provider value={value}>{children}</BookingsContext.Provider>;
+}

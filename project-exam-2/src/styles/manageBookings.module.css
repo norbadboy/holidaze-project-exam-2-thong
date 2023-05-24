@@ -1,0 +1,28 @@
+.manageBookingsImage {
+  border-radius: 4%;
+  height: 350px;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* Booking card */
+.manageBookingsCard_Container {
+  border: none;
+  margin-bottom: 50px;
+}
+.manageBookingsCard_Title {
+  font-size: 21px;
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+.manageBookingsCard_Subtitle {
+  font-size: 17px;
+  margin-top: 3px;
+}
+.manageBookingsCard_Date {
+  font-size: 15px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+}

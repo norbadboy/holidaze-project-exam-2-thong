@@ -1,15 +1,17 @@
-import { API_PATH } from "../../api/constant.mjs";
-import { useParams } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
+import { API_PATH } from "../../api/constant.mjs";
 import useAPI from "../../api/apiHook";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { useUser } from "../../contexts/userContext";
+import { createBooking } from "../../api/bookings/create.mjs";
 import { Row, Col, Card, Modal, Button, Container, Dropdown } from "react-bootstrap";
-import { FaWifi, FaParking, FaStar } from "react-icons/fa";
+import { FaWifi, FaParking, FaStar, FaSortDown } from "react-icons/fa";
 import { MdPets, MdFreeBreakfast, MdVerifiedUser } from "react-icons/md";
 import styles from "../../styles/venue.module.css";
 import { StyledButton } from "../../styles/styledComponents/styledButton.jsx";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import { FaSortDown } from "react-icons/fa";
 
 const url = API_PATH + "/venues";
 
@@ -17,21 +19,64 @@ function VenuePage() {
   let { id } = useParams();
   const { data: venue, loading, error } = useAPI(`${url}/${id}?_owner=true&_bookings=true`);
   const media = venue?.media;
+  const { user } = useUser();
+  const navigate = useNavigate();
+
+  // Check if the user is the owner of the venue
+  const isOwner = user && venue?.owner?.name === user.name;
+
+  // booking form
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      startDate: null,
+      endDate: null,
+    },
+  });
+
+  const onSubmit = async (data) => {
+    const bookingData = {
+      dateFrom: new Date(data.startDate).toISOString(),
+      dateTo: new Date(data.endDate).toISOString(),
+      guests: Number(guests),
+      venueId: id,
+    };
+
+    try {
+      const response = await createBooking(bookingData);
+      console.log(response); // check response
+
+      if (response.status === 201 || response.status === 200) {
+        // If successful, show the success modal and after 2 seconds redirect to /bookings
+        setShowSuccessModal(true);
+        setTimeout(() => {
+          setShowSuccessModal(false);
+          navigate("/bookings");
+        }, 1500);
+      } else {
+        // Handle unsuccessful booking scenario
+        console.log("Booking was unsuccessful");
+      }
+    } catch (error) {
+      console.log(error); // handle error
+    }
+  };
 
   // modal
   const [showModal, setShowModal] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const handleClose = () => setShowModal(false);
   const handleShow = () => setShowModal(true);
 
-  // check if a token is present in local storage
-  // if so, show the booking button
-  const token = localStorage.getItem("token");
-  const showBookingButton = token ? true : false;
-
-  // guest dropdown
+  // guests dropdown
   const [guests, setGuests] = useState(1);
-  const handleSelect = (e) => {
+  const handleSelect = (e, selectedGuests) => {
     setGuests(e);
+    setValue("guests", selectedGuests);
   };
 
   // Generate options for dropdown
@@ -93,7 +138,7 @@ function VenuePage() {
                 venue.location?.city === "Unknown" ||
                 venue.location?.country === "Unknown"
                   ? "Please contact owner for location"
-                  : `${venue.location?.address}, ${venue.location?.city}, ${venue.location?.country}`}{" "}
+                  : `${venue.location?.address}, ${venue.location?.city}, ${venue.location?.country}`}
               </div>
             </div>
           </div>
@@ -202,69 +247,102 @@ function VenuePage() {
                   <Card className={styles.datesAndGuestsContainer}>
                     <Card.Body>
                       <h5>Add dates for prices</h5>
-                      <div className={styles.datePickerContainer}>
-                        <DatePicker
-                          selected={startDate}
-                          onChange={(date) => setStartDate(date)}
-                          selectsStart
-                          startDate={startDate}
-                          endDate={endDate}
-                          excludeDates={excludedDates}
-                          minDate={new Date()}
-                          placeholderText="Check-in"
-                          className={`rounded ${styles.datePicker}`}
-                        ></DatePicker>
-                        <DatePicker
-                          selected={endDate}
-                          onChange={(date) => setEndDate(date)}
-                          selectsEnd
-                          startDate={startDate}
-                          endDate={endDate}
-                          minDate={startDate ? startDate : new Date()}
-                          excludeDates={excludedDates}
-                          placeholderText="Check-out"
-                          className={`rounded ${styles.datePicker}`}
-                        />
-                      </div>
-                      <div className="d-flex flex-grow-1">
-                        <Dropdown onSelect={handleSelect} className="d-flex flex-grow-1">
-                          <Dropdown.Toggle
-                            variant="secondary"
-                            id="dropdown-basic"
-                            className={`${styles.guestsDropdownToggle}`}
-                          >
-                            <div className="d-flex justify-content-between">
-                              <div className="d-flex flex-column align-items-start">
-                                <strong style={{ fontSize: "16px" }}>GUESTS</strong>
-                                <p>
-                                  {guests} {guests > 1 ? "guests" : "guest"}
-                                </p>
-                              </div>
-                              <div className="d-flex flex-grow-1 flex-column justify-content-start align-items-end mt-2">
-                                <FaSortDown style={{ width: "25px", height: "25px" }} />
-                              </div>
-                            </div>
-                          </Dropdown.Toggle>
-                          <Dropdown.Menu
-                            variant="secondary"
-                            style={{
-                              maxHeight: "200px",
-                              overflow: "auto",
-                              width: "100%",
-                              textAlign: "center",
+                      <form onSubmit={handleSubmit(onSubmit)}>
+                        <div className={styles.datePickerContainer}>
+                          <DatePicker
+                            {...register("startDate", { required: true })} // Registering startDate
+                            selected={startDate}
+                            onChange={(date) => {
+                              setStartDate(date);
+                              setValue("startDate", date, { shouldValidate: true });
                             }}
-                          >
-                            {generateDropdownItems()}
-                          </Dropdown.Menu>
-                        </Dropdown>
-                      </div>
-                      <div className="d-flex flex-grow-1">
-                        {showBookingButton && (
-                          <StyledButton className="mt-2 py-2 d-flex flex-grow-1 justify-content-center">
-                            <strong>Reserve</strong>
-                          </StyledButton>
-                        )}
-                      </div>
+                            selectsStart
+                            startDate={startDate}
+                            endDate={endDate}
+                            excludeDates={excludedDates}
+                            minDate={new Date()}
+                            placeholderText="Check-in"
+                            className={`rounded ${styles.datePicker}`}
+                            required
+                            showTimeSelect
+                          />
+                          <DatePicker
+                            {...register("endDate", { required: true })} // Registering endDate
+                            selected={endDate}
+                            onChange={(date) => {
+                              setEndDate(date);
+                              setValue("endDate", date, { shouldValidate: true });
+                            }}
+                            selectsEnd
+                            startDate={startDate}
+                            endDate={endDate}
+                            minDate={startDate ? startDate : new Date()}
+                            excludeDates={excludedDates}
+                            placeholderText="Check-out"
+                            className={`rounded ${styles.datePicker}`}
+                            required
+                            showTimeSelect
+                          />
+                        </div>
+                        <div className="d-flex flex-grow-1">
+                          <Dropdown onSelect={handleSelect} className="d-flex flex-grow-1">
+                            <Dropdown.Toggle
+                              variant="secondary"
+                              id="dropdown-basic"
+                              className={`${styles.guestsDropdownToggle}`}
+                            >
+                              <div className="d-flex justify-content-between">
+                                <div className="d-flex flex-column align-items-start">
+                                  <strong style={{ fontSize: "16px" }}>GUESTS</strong>
+                                  <p>
+                                    {guests} {guests > 1 ? "guests" : "guest"}
+                                  </p>
+                                </div>
+                                <div className="d-flex flex-grow-1 flex-column justify-content-start align-items-end mt-2">
+                                  <FaSortDown style={{ width: "25px", height: "25px" }} />
+                                </div>
+                              </div>
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu
+                              variant="secondary"
+                              style={{
+                                maxHeight: "200px",
+                                overflow: "auto",
+                                width: "100%",
+                                textAlign: "center",
+                              }}
+                            >
+                              {generateDropdownItems()}
+                            </Dropdown.Menu>
+                          </Dropdown>
+                          <input type="hidden" {...register("guests")} value={guests} />
+                        </div>
+                        <div className="d-flex flex-grow-1">
+                          {user && !isOwner ? (
+                            <div className="mt-2 py-2 d-flex flex-grow-1 justify-content-center">
+                              <StyledButton
+                                type="submit"
+                                className="mt-2 py-2 d-flex flex-grow-1 justify-content-center"
+                              >
+                                <strong>Reserve</strong>
+                              </StyledButton>
+                            </div>
+                          ) : (
+                            <Link
+                              to="/login"
+                              className="mt-2 py-2 d-flex flex-grow-1 justify-content-center"
+                              style={{ textDecoration: "none" }}
+                            >
+                              <StyledButton
+                                disabled={isOwner}
+                                className="mt-2 py-2 d-flex flex-grow-1 justify-content-center"
+                              >
+                                <strong>{isOwner ? "Owner" : "Log in"}</strong>
+                              </StyledButton>
+                            </Link>
+                          )}
+                        </div>
+                      </form>
                     </Card.Body>
                   </Card>
                 </Col>
@@ -349,6 +427,12 @@ function VenuePage() {
             Close
           </Button>
         </Modal.Footer>
+      </Modal>
+      <Modal show={showSuccessModal} onHide={() => setShowModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Reservation Successful</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Thank you for your reservation!</Modal.Body>
       </Modal>
     </div>
   );

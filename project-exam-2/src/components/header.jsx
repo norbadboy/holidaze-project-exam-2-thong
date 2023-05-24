@@ -50,13 +50,25 @@ function LoggedOutHeader() {
         <div className="d-flex align-items-center">
           <Navbar.Brand className="logoContainer">
             {user ? (
-              <Link to={brandLink}>
+              <div
+                onClick={() => {
+                  navigate(brandLink);
+                  window.location.reload();
+                }}
+                style={{ cursor: "pointer" }}
+              >
                 <img src={logo} alt="logo" className={styles.logo} />
-              </Link>
+              </div>
             ) : (
-              <Link to="/">
+              <div
+                onClick={() => {
+                  navigate("/");
+                  window.location.reload();
+                }}
+                style={{ cursor: "pointer" }}
+              >
                 <img src={logo} alt="logo" className={styles.logo} />
-              </Link>
+              </div>
             )}
           </Navbar.Brand>
         </div>
@@ -99,7 +111,7 @@ function LoggedOutHeader() {
                     <div>
                       <Nav.Link
                         as={Link}
-                        to="/bookings"
+                        to="/manage-bookings"
                         className={styles.navLink}
                         onClick={() => setExpanded(false)}
                       >
