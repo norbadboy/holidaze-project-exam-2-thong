@@ -53,7 +53,6 @@ function LoggedOutHeader() {
               <div
                 onClick={() => {
                   navigate(brandLink);
-                  window.location.reload();
                 }}
                 style={{ cursor: "pointer" }}
               >
