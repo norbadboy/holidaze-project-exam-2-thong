@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
-    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "poppins", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -23,8 +23,8 @@ code {
   --warning: #ffab00;
   --warning-light: #ffd766;
   --warning-dark: #b26e00;
-  --danger: #ff5630;
-  --danger-light: #ff8f71;
+  --danger: #ff4530;
+  --danger-light: #ff8271;
   --danger-dark: #b21f00;
   --neutral-0: #ffffff;
   --neutral-100: #f8f9fa;
@@ -42,6 +42,16 @@ code {
 
 h1 {
   font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+}
+h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+}
+h3 {
+  font-size: 1.25rem;
   font-weight: 700;
   margin: 0;
 }
