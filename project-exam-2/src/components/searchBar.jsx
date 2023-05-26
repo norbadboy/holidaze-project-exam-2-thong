@@ -44,8 +44,8 @@ function SearchBar({ products }) {
   return (
     <div className={styles.searchBarBody}>
       <div className={styles.searchBarContainer}>
-        <Form onSubmit={onSubmitForm} className="d-flex">
-          <InputGroup className="">
+        <Form onSubmit={onSubmitForm} className={styles.searchForm_Container}>
+          <InputGroup>
             <Form.Control
               type="text"
               name="search"
@@ -54,7 +54,7 @@ function SearchBar({ products }) {
               onChange={onChange}
               className={styles.searchInput}
             />
-            <Button type="submit" variant="outline-secondary" className={styles.searchButton}>
+            <Button type="submit" className={styles.searchButton}>
               <FaSearch className={styles.searchBarIcon} />
             </Button>
           </InputGroup>

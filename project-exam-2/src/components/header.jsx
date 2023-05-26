@@ -71,6 +71,11 @@ function LoggedOutHeader() {
             )}
           </Navbar.Brand>
         </div>
+        <div className={styles.holidazeLink_Container}>
+          <Nav.Link as={Link} to="/login" className={styles.holidazeLink}>
+            Holidaze your venue
+          </Nav.Link>
+        </div>
         {user && (
           <Navbar.Toggle
             aria-controls="basic-navbar-nav"

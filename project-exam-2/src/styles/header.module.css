@@ -1,3 +1,4 @@
+/* Navbar */
 .navbarContainer {
   display: flex;
   justify-content: space-between;
@@ -31,6 +32,26 @@
 }
 .navLink:hover {
   background-color: var(--secondary-light);
+}
+.holidazeLink_Container {
+  display: flex;
+  flex: 1;
+  justify-content: end;
+}
+.holidazeLink {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  color: var(--dark);
+  text-decoration: none;
+  transition: 0.3s;
+  padding: 10px 17px;
+  margin-right: 10px;
+  font-weight: 500;
+}
+.holidazeLink:hover {
+  background-color: var(--secondary-light);
+  border-radius: 25px;
 }
 .breakLine {
   border-top: 1px solid var(--neutral-400);
@@ -77,8 +98,36 @@
 .searchBarContainer {
   position: relative;
   display: flex;
+  flex: 1;
   flex-direction: column;
   justify-content: center;
+  max-width: 400px;
+}
+.searchForm_Container {
+  border-radius: 20px;
+}
+.searchForm_Container:hover {
+  box-shadow: 0px 3px 1.4px 0.5px rgba(0, 0, 0, 0.125);
+  cursor: pointer;
+}
+.searchInput {
+  border-radius: 20px;
+}
+.searchButton {
+  border-radius: 20px;
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+.searchButton:hover {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+.searchButton:active {
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+}
+.searchBarIcon {
+  margin-bottom: 5px;
 }
 .dropdown {
   position: absolute;
@@ -122,7 +171,6 @@
   .searchBarContainer {
     flex-direction: column;
   }
-
   .dropdown {
     top: calc(100% + 10px);
     left: -10px;
@@ -136,5 +184,8 @@
 @media (max-width: 500px) {
   .navItemsBody {
     width: 60%;
+  }
+  .holidazeLink_Container {
+    display: none;
   }
 }

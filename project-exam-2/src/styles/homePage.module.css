@@ -6,24 +6,34 @@
 .homePageTitle_Card {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
 }
-
+.filters_Container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
 .filterButton {
   background-color: white;
   color: var(--dark);
+  font-weight: 400;
   border: none;
   display: flex;
   flex-direction: column;
+  margin-right: 29px;
 }
 .filterButton_Icon {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   margin: 0 auto;
-  margin-bottom: 7px;
+  margin-bottom: 5px;
 }
 .filterButton:hover {
   background-color: var(--secondary-light);
   color: var(--dark);
+}
+.filterButton:active {
+  background-color: var(--secondary-light) !important;
+  color: var(--dark) !important;
 }
 .filterList_Container {
   cursor: pointer;
@@ -41,19 +51,58 @@
   font-size: 15px;
   margin-right: 15px;
 }
+.clearButton_Container {
+  display: flex;
+  align-items: center;
+}
+.clearButton,
+.clearButton:hover {
+  background-color: var(--secondary-dark);
+  border-color: var(--secondary-dark);
+  padding: 6.5px 9px;
+  margin-left: 30px;
+}
+.clearButton:active {
+  background-color: var(--secondary-dark) !important;
+  border-color: var(--secondary-dark) !important;
+}
 
 @media screen and (min-width: 768px) {
   .homePageContainer {
-    margin-top: 120px;
+    margin-top: 100px;
   }
   .homePageTitle_Card {
-    padding: 10px 5px;
-    margin-top: 40px;
+    margin-top: 35px;
   }
   .homePageCard img {
     height: 280px;
     width: 100%;
     -o-object-fit: cover;
     object-fit: cover;
+  }
+}
+@media screen and (max-width: 768px) {
+  .homePageContainer {
+    margin-top: 100px;
+  }
+  .homePageTitle_Card {
+    margin-top: 15px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .homePageTitle_Card {
+    margin: 0;
+    flex-direction: column;
+  }
+  .clearButton_Container {
+    margin-top: 15px;
+    justify-content: center;
+  }
+  .clearButton {
+    margin: 0;
+  }
+  .filterButton {
+    margin: 0 10px;
   }
 }

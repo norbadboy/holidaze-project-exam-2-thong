@@ -1,4 +1,4 @@
-import { Row, Col, Card, Button } from "react-bootstrap";
+import { Row, Col, Button } from "react-bootstrap";
 import { useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { API_PATH } from "../../api/constant.mjs";
@@ -128,29 +128,27 @@ function HomePage() {
 
   return (
     <div className={styles.homePageContainer}>
-      <div className="">
+      <div>
         <SearchBar products={data} />
       </div>
-      <div className="mb-4">
-        <Card className={styles.homePageTitle_Card}>
-          <div>
-            <CountriesFilter items={data} onFilter={handleFilter} />
-          </div>
-          <div>
-            <PriceFilter onFilter={handlePriceFilter} />
-          </div>
-          <div className="d-flex align-items-center">
-            <Button onClick={handleClearFilters}>Clear Filters</Button>
-          </div>
-        </Card>
-        <div className="mt-3 d-flex justify-content-center">
-          {activeFilters.country && (
-            <p className={styles.activeFilters_Item}>{activeFilters.country}</p>
-          )}
-          {activeFilters.price && (
-            <p className={styles.activeFilters_Item}>{activeFilters.price}</p>
-          )}
+      <hr />
+      <div className={styles.homePageTitle_Card}>
+        <div className={styles.filters_Container}>
+          <CountriesFilter items={data} onFilter={handleFilter} />
+          <PriceFilter onFilter={handlePriceFilter} />
         </div>
+        <div className={styles.clearButton_Container}>
+          <Button onClick={handleClearFilters} className={styles.clearButton}>
+            Clear filters
+          </Button>
+        </div>
+      </div>
+      <hr />
+      <div className="mt-3 d-flex justify-content-center">
+        {activeFilters.country && (
+          <p className={styles.activeFilters_Item}>{activeFilters.country}</p>
+        )}
+        {activeFilters.price && <p className={styles.activeFilters_Item}>{activeFilters.price}</p>}
       </div>
       <Row>
         {productsToRender.slice(0, productLimit).map((product) => (
