@@ -55,12 +55,15 @@
   display: flex;
   align-items: center;
 }
-.clearButton,
-.clearButton:hover {
+.clearButton {
   background-color: var(--secondary-dark);
   border-color: var(--secondary-dark);
   padding: 6.5px 9px;
   margin-left: 30px;
+}
+.clearButton:hover {
+  background-color: var(--secondary-dark);
+  border-color: var(--secondary-dark);
 }
 .clearButton:active {
   background-color: var(--secondary-dark) !important;
