@@ -1,16 +1,17 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { Button, Card, Row, Col } from "react-bootstrap";
+import { MdMail } from "react-icons/md";
+import { FaFacebookSquare, FaApple, FaGoogle } from "react-icons/fa";
 import { StyledForm, StyledInput } from "../../styles/styledComponents/styledForm";
 import { StyledButton } from "../../styles/styledComponents/styledButton";
 import { ErrorMessage } from "../../styles/styledComponents/errorMessage";
-import { Button, Card, Row, Col } from "react-bootstrap";
 import { registerFunction } from "../../api/auth/register.mjs";
-import { FaFacebookSquare, FaApple, FaGoogle } from "react-icons/fa";
-import { MdMail } from "react-icons/md";
-import { useNavigate, Link } from "react-router-dom";
 import { loginFunction } from "../../api/auth/login.mjs";
-import { useState } from "react";
+import styles from "../../styles/register.module.css";
 
 const schema = yup.object().shape({
   name: yup
@@ -31,8 +32,8 @@ function SignUpForm() {
   const [errorMessage, setErrorMessage] = useState("");
   // only for testing. remove later
   const defaultValues = {
-    name: "thong9",
-    email: "thong9@noroff.no",
+    name: "thong98",
+    email: "thong98@noroff.no",
     password: "12345678",
     avatar: "https://placekitten.com/g/200/300",
     venueManager: false,
@@ -76,33 +77,37 @@ function SignUpForm() {
   };
 
   return (
-    <Card className="mt-5">
-      <Card.Body className="pt-5">
-        <Row className="d-flex justify-content-between">
+    <Card className={styles.signUp_Container}>
+      <Card.Body className={styles.signUp_Body}>
+        <Row className={styles.signUpRow_Container}>
           <Col lg={6}>
             <StyledForm className="d-flex flex-grow-1" onSubmit={handleSubmit(onSubmit)}>
               <div className="mb-1">
-                <h1 className="mb-3">Sign up</h1>
+                <h1 className="mb-4">Sign up</h1>
               </div>
               <StyledInput
+                className={styles.signUp_Input}
                 type="text"
                 placeholder="Name"
                 {...register("name", { required: true })}
               />
               {errors.name && <p>{errors.name.message}</p>}
               <StyledInput
+                className={styles.signUp_Input}
                 type="email"
                 placeholder="Email"
                 {...register("email", { required: true })}
               />
               {errors.email && <p>{errors.email.message}</p>}
               <StyledInput
+                className={styles.signUp_Input}
                 type="password"
                 placeholder="Password"
                 {...register("password", { required: true })}
               />
               {errors.password && <p>{errors.password.message}</p>}
               <StyledInput
+                className={styles.signUp_Input}
                 type="text"
                 placeholder="Avatar URL"
                 {...register("avatar", { required: false })}
@@ -121,67 +126,61 @@ function SignUpForm() {
             </StyledForm>
           </Col>
           <Col lg={6}>
-            <div className="d-flex flex-grow-1 justify-content-center">
-              <div className="redirectToLoginContainer d-flex flex-column">
-                <h4 className="mt-4">Already have an account?</h4>
-                <Link to="/login" style={{ textDecoration: "none" }}>
-                  <Button
-                    className="mt-3 d-flex justify-content-center"
-                    variant="outline-dark"
-                    size="md"
-                    style={{ width: "370px" }}
-                  >
-                    <MdMail
-                      className="mt-1 d-flex flex-grow-1"
-                      style={{
-                        width: "0px",
-                      }}
-                    />
-                    <div className="d-flex flex-grow-1" style={{ width: "220px" }}>
-                      Continue with email
+            <div className={styles.haveAccount_Container}>
+              <div className="d-flex flex-column">
+                <h4 className={styles.haveAccount_Title}>Already have an account?</h4>
+                <h4 className={styles.haveAccount_Title_Mobile}>Or log in</h4>
+                <div className="mt-1">
+                  <Link to="/login" className={styles.redirectToLogin_Link}>
+                    <div className={styles.redirect_ButtonContainer}>
+                      <Button className={styles.redirectToLogin_Button}>
+                        <div className={styles.redirectToLogin_IconContainer}>
+                          <MdMail className={styles.redirectToLogin_Icon} />
+                        </div>
+                        <div className={styles.redirectToLogin_Text}>Continue with E-mail</div>
+                      </Button>
                     </div>
-                  </Button>
-                </Link>
-                <Button
-                  className="mt-3 d-flex justify-content-center"
-                  variant="outline-primary"
-                  size="md"
-                  onClick={() => window.open("https://www.facebook.com", "_blank")}
-                >
-                  <FaFacebookSquare className="mt-1 d-flex flex-grow-1" />
-                  <div className="d-flex flex-grow-1">Continue with Facebook</div>
-                </Button>
-                <Button
-                  className="mt-3 d-flex justify-content-center"
-                  variant="outline-danger"
-                  size="md"
-                  onClick={() => window.open("https://www.google.com", "_blank")}
-                >
-                  <FaGoogle
-                    className="mt-1 d-flex flex-grow-1"
-                    style={{ width: "0px", height: "20px" }}
-                  />
-                  <div className="d-flex flex-grow-1" style={{ width: "215px" }}>
-                    Continue with Google
-                  </div>{" "}
-                </Button>
-                <Button
-                  className="mt-3 d-flex justify-content-center"
-                  variant="outline-dark"
-                  size="md"
-                  onClick={() => window.open("https://www.apple.com", "_blank")}
-                >
-                  <FaApple
-                    className="mt-1 d-flex flex-grow-1"
-                    style={{
-                      width: "0px",
-                      height: "22px",
-                    }}
-                  />
-                  <div className="d-flex flex-grow-1" style={{ width: "215px" }}>
-                    Continue with Apple
+                  </Link>
+                  <div className={styles.redirect_ButtonContainer}>
+                    <Button
+                      className={styles.redirect_Button}
+                      variant="outline-primary"
+                      size="md"
+                      onClick={() => window.open("https://www.facebook.com", "_blank")}
+                    >
+                      <div className={styles.redirect_IconContainer}>
+                        <FaFacebookSquare className={styles.redirect_Icon} />
+                      </div>
+                      <div className={styles.redirect_Text}>Continue with Facebook</div>
+                    </Button>
                   </div>
-                </Button>
+                  <div className={styles.redirect_ButtonContainer}>
+                    <Button
+                      className={styles.redirect_Button}
+                      variant="outline-danger"
+                      size="md"
+                      onClick={() => window.open("https://www.google.com", "_blank")}
+                    >
+                      <div className={styles.redirect_IconContainer}>
+                        <FaGoogle className={styles.redirect_Icon} />
+                      </div>
+                      <div className={styles.redirect_Text}>Continue with Google</div>{" "}
+                    </Button>
+                  </div>
+                  <div className={styles.redirect_ButtonContainer}>
+                    <Button
+                      className={styles.redirect_Button}
+                      variant="outline-dark"
+                      size="md"
+                      onClick={() => window.open("https://www.apple.com", "_blank")}
+                    >
+                      <div className={styles.redirect_IconContainer}>
+                        <FaApple className={styles.redirect_Icon} />
+                      </div>
+                      <div className={styles.redirect_Text}>Continue with Apple</div>
+                    </Button>
+                  </div>
+                </div>
               </div>
             </div>
           </Col>
