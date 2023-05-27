@@ -150,7 +150,7 @@ function HomePage() {
         )}
         {activeFilters.price && <p className={styles.activeFilters_Item}>{activeFilters.price}</p>}
       </div>
-      <Row>
+      <Row className="g-5">
         {productsToRender.slice(0, productLimit).map((product) => (
           <Col key={product.id} xl={4} md={6}>
             <ProductCard product={product} />

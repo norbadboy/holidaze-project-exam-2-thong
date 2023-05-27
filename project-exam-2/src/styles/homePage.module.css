@@ -1,5 +1,55 @@
+.homePageContainer p {
+  color: black;
+}
+
+/* Product card */
 .homePageCard {
-  margin-bottom: 40px;
+  border: none;
+}
+.homePageCard div {
+  color: black;
+}
+.homePageCard_Img {
+  height: 290px;
+  width: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.productCard_Body {
+  border: none;
+  padding: 15px 0 10px 0;
+}
+.productText_Price {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 1.3px;
+}
+.productRating_Container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: start;
+  margin-top: 6px;
+}
+.productRating_Icon {
+  font-size: 0.8rem;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  color: var(--dark);
+}
+.productRating_Text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 16px;
+}
+.productLocation_Container {
+  margin-bottom: 6px;
+}
+.productLocation_Text {
+  font-size: 1rem;
+  color: var(--dark);
 }
 
 /* Filter */
@@ -75,13 +125,7 @@
     margin-top: 100px;
   }
   .homePageTitle_Card {
-    margin-top: 35px;
-  }
-  .homePageCard img {
-    height: 280px;
-    width: 100%;
-    -o-object-fit: cover;
-    object-fit: cover;
+    margin-top: 20px;
   }
 }
 @media screen and (max-width: 768px) {
