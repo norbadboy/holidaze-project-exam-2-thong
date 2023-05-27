@@ -80,7 +80,7 @@ function Footer() {
 
         <span className={`${styles.offcanvasButtonContainer} ${styles.mobile}`}>
           <Button className={styles.offcanvasButton} onClick={handleShow}>
-            More Info
+            More info
           </Button>
           <Offcanvas
             show={show}
@@ -89,7 +89,7 @@ function Footer() {
             className={styles.offcanvasCustom_Container}
           >
             <Offcanvas.Header closeButton>
-              <Offcanvas.Title>More Information</Offcanvas.Title>
+              <Offcanvas.Title>More information</Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body className={styles.offcanvasCustom}>
               {renderCompanyName()}

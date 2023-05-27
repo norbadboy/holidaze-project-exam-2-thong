@@ -1,5 +1,7 @@
 .loginBody {
-  margin-top: 150px;
+  margin: 110px 0 45px 0;
+  padding: 50px 40px;
+  display: flex;
 }
 .loginFieldText {
   padding: 17px;
@@ -9,4 +11,56 @@
   border: 1px solid black;
   margin-bottom: 1rem;
   font-size: 1.14rem;
+}
+
+/* register col */
+.redirectToRegister_Container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.signUpForm_Body {
+  margin: 30px 0 15px 0;
+}
+
+/* redirect col */
+.redirectToRegister_Title_Mobile {
+  display: none;
+}
+.redirectToRegister_Title {
+  margin-top: 50px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--neutral-700);
+}
+
+/* Buttons */
+.redirectToRegister_Button {
+  background-color: var(--secondary-dark);
+  margin-top: 10px;
+}
+/* screen size */
+@media screen and (max-width: 990px) {
+  .redirectToRegister_Container {
+    border-top: 1px solid var(--neutral-400);
+    margin-top: 40px;
+  }
+  .redirectToRegister_Title {
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .redirectToRegister_Title_Mobile {
+    display: flex;
+    justify-content: center;
+    margin-top: 35px;
+  }
+  .redirectToRegister_Title {
+    display: none;
+  }
+  .loginFieldText {
+    font-size: 0.92rem;
+  }
 }
