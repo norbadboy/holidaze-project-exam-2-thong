@@ -20,7 +20,6 @@ export async function updateAvatar(avatar) {
     const profile = await response.json();
     return profile;
   }
-  console.log("avatar updated");
 
   throw new Error(response.statusText);
 }

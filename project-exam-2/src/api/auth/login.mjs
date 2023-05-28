@@ -25,5 +25,4 @@ export async function loginFunction({ email, password }) {
     alert("wrong email or password");
   }
   loginFunction(email, password);
-  console.log("loginFunction");
 }

@@ -38,7 +38,6 @@ function ManageBookings() {
   const fetchVenueBookings = useCallback(async () => {
     try {
       const bookings = await getBookingOfVenueByProfile(userName, sort, sortOrder);
-      console.log("bookings", bookings);
       setVenueBookings(bookings);
     } catch (error) {
       console.error(error);
