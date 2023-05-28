@@ -1,0 +1,42 @@
+.userInfo_Container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+.breakLine {
+  border-top: 1px solid var(--neutral-400);
+  margin: 10px 0;
+}
+.userInfo_ImageBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.userInfo_Image {
+  height: 350px;
+}
+
+@media (max-width: 767px) {
+  .navItemsBody {
+    width: 60%;
+  }
+  .holidazeLink_Container {
+    display: none;
+  }
+  .breakLine {
+    max-width: 350px;
+  }
+}
+
+@media (max-width: 426px) {
+  .userInfo_ImageContainer {
+    margin-top: 40px;
+  }
+  .userInfo_ImageBody {
+    align-items: start;
+  }
+  .userInfo_Image {
+    height: 300px;
+  }
+}

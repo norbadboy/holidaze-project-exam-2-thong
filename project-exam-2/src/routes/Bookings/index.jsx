@@ -1,6 +1,6 @@
 import { useUser } from "../../contexts/userContext";
 import { Row, Col, Card, Modal, Button, Dropdown } from "react-bootstrap";
-import { StyledButton } from "../../styles/styledComponents/styledButton";
+import { StyledButton, BaseButton } from "../../styles/styledComponents/styledButton";
 import styles from "../../styles/bookings.module.css";
 import { useState, useEffect, useCallback } from "react";
 import { getAllBookingsByProfile } from "../../api/bookings/get.mjs";
@@ -144,6 +144,8 @@ function UserBookings() {
   const handleShowModal = (booking) => {
     setSelectedBooking(booking);
     setGuests(booking.guests);
+    setStartDate(new Date(booking.dateFrom));
+    setEndDate(new Date(booking.dateTo));
     setShowModal(true);
   };
 
@@ -163,7 +165,7 @@ function UserBookings() {
   };
 
   return (
-    <Row className="justify-content-center">
+    <Row className={styles.userBookings_Container}>
       <Col className="mt-5">
         <h1 className="text-start mt-5">My Bookings</h1>
         <hr />
@@ -194,20 +196,22 @@ function UserBookings() {
                 className={styles.myBookingsImage}
                 onClick={() => handleShowModal(booking)}
               />
-              <Card
-                className={styles.myBookingsCard_Container}
-                onClick={() => handleShowModal(booking)}
-              >
+              <div className={styles.myBookingsCard_Container}>
                 <Card.Title className={styles.myBookingsCard_Title}>
                   <strong> {booking.venue.name} </strong>
                   <div className={styles.myBookingsCard_Text}>Guests: {booking.guests}</div>
                 </Card.Title>
                 <Card.Subtitle className={`text-muted ${styles.myBookingsCard_Subtitle}`}>
-                  {booking.venue.location.address !== "Unknown" &&
-                    booking.venue.location.address.replace(",", "")}
-                  {booking.venue.location.city !== "Unknown" && `, ${booking.venue.location.city}`}
-                  {booking.venue.location.country !== "Unknown" &&
-                    `, ${booking.venue.location.country}`}
+                  {booking.venue.location.address === "Unknown" ||
+                  booking.venue.location.address === "" ||
+                  booking.venue.location.city === "Unknown" ||
+                  booking.venue.location.city === "" ||
+                  booking.venue.location.country === "Unknown" ||
+                  booking.venue.location.country === ""
+                    ? "Contact manager for location"
+                    : `${booking.venue.location.address.replace(",", "")}, ${
+                        booking.venue.location.city
+                      }, ${booking.venue.location.country}`}
                 </Card.Subtitle>
                 <div className={styles.myBookingsCard_Date}>
                   <div>
@@ -217,18 +221,26 @@ function UserBookings() {
                     <strong>Check-out:</strong> {formatDate(booking.dateTo)}
                   </div>
                 </div>
-              </Card>
+                <div className="d-flex justify-content-center mt-3">
+                  <BaseButton
+                    className={styles.viewBookingButton}
+                    onClick={() => handleShowModal(booking)}
+                  >
+                    Edit Booking
+                  </BaseButton>
+                </div>
+              </div>
             </Col>
           ))}
         </Row>
       </Col>
       <Modal show={showModal} onHide={handleCloseModal} fullscreen>
-        <Modal.Header closeButton className="px-5">
+        <Modal.Header closeButton className={styles.userBookings_ModalHeader}>
           <Modal.Title>{selectedBooking?.venue.name}</Modal.Title>
         </Modal.Header>
-        <Modal.Body className="px-5">
+        <Modal.Body className={styles.userBookings_ModalBody}>
           <form onSubmit={handleSubmit(handleUpdateBooking)}>
-            <Row>
+            <Row className="mb-4">
               <Col xs={12} md={7} lg={6} className="mb-3">
                 <div className="d-flex justify-content-between">
                   <div className="d-flex flex-column flex-grow-1">
@@ -261,7 +273,13 @@ function UserBookings() {
                 <Card className={styles.datesAndGuestsContainer}>
                   <div className="d-flex flex-column">
                     <DatePicker
-                      selected={startDate}
+                      selected={
+                        startDate
+                          ? startDate
+                          : selectedBooking
+                          ? new Date(selectedBooking.dateFrom)
+                          : null
+                      }
                       onChange={(date) => {
                         setStartDate(date);
                         setValue("startDate", date, { shouldValidate: true });
@@ -276,7 +294,13 @@ function UserBookings() {
                       className={`rounded ${styles.datePicker}`}
                     />
                     <DatePicker
-                      selected={endDate}
+                      selected={
+                        endDate
+                          ? endDate
+                          : selectedBooking
+                          ? new Date(selectedBooking.dateTo)
+                          : null
+                      }
                       onChange={(date) => {
                         setEndDate(date);
                         setValue("endDate", date, { shouldValidate: true });
@@ -343,7 +367,7 @@ function UserBookings() {
             </Row>
           </form>
         </Modal.Body>
-        <Modal.Footer className="px-5">
+        <Modal.Footer className={styles.userBookings_ModalFooter}>
           <Button variant="secondary" onClick={handleCloseModal}>
             Close
           </Button>

@@ -1,9 +1,9 @@
-import { Row, Col, Card, Button } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import { useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { API_PATH } from "../../api/constant.mjs";
 import useAPI from "../../api/apiHook.jsx";
-import { StyledButton } from "../../styles/styledComponents/styledButton.jsx";
+import { StyledButton, BaseButton } from "../../styles/styledComponents/styledButton.jsx";
 import styles from "../../styles/homePage.module.css";
 import ProductCard from "../../components/productCard.jsx";
 import SearchBar from "../../components/searchBar.jsx";
@@ -128,31 +128,29 @@ function HomePageUser() {
 
   return (
     <div className={styles.homePageContainer}>
-      <div className="">
+      <div>
         <SearchBar products={data} />
       </div>
-      <div className="mb-4">
-        <Card className={styles.homePageTitle_Card}>
-          <div>
-            <CountriesFilter items={data} onFilter={handleFilter} />
-          </div>
-          <div>
-            <PriceFilter onFilter={handlePriceFilter} />
-          </div>
-          <div className="d-flex align-items-center">
-            <Button onClick={handleClearFilters}>Clear Filters</Button>
-          </div>
-        </Card>
-        <div className="mt-3 d-flex justify-content-center">
-          {activeFilters.country && (
-            <p className={styles.activeFilters_Item}>{activeFilters.country}</p>
-          )}
-          {activeFilters.price && (
-            <p className={styles.activeFilters_Item}>{activeFilters.price}</p>
-          )}
+      <hr />
+      <div className={styles.homePageTitle_Card}>
+        <div className={styles.filters_Container}>
+          <CountriesFilter items={data} onFilter={handleFilter} />
+          <PriceFilter onFilter={handlePriceFilter} />
+        </div>
+        <div className={styles.clearButton_Container}>
+          <BaseButton onClick={handleClearFilters} className={styles.clearButton}>
+            Clear filters
+          </BaseButton>
         </div>
       </div>
-      <Row>
+      <hr />
+      <div className="mt-3 d-flex justify-content-center">
+        {activeFilters.country && (
+          <p className={styles.activeFilters_Item}>{activeFilters.country}</p>
+        )}
+        {activeFilters.price && <p className={styles.activeFilters_Item}>{activeFilters.price}</p>}
+      </div>
+      <Row className="g-5">
         {productsToRender.slice(0, productLimit).map((product) => (
           <Col key={product.id} xl={4} md={6}>
             <ProductCard product={product} />
@@ -160,7 +158,7 @@ function HomePageUser() {
         ))}
       </Row>
       {productsToRender.length > productLimit && (
-        <div className="text-center mb-5 pb-2">
+        <div className="text-center mt-4 mb-5 pb-2">
           <StyledButton onClick={handleLoadMore}>Load more</StyledButton>
         </div>
       )}

@@ -1,4 +1,4 @@
-import { Row, Col, Button } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import { useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { API_PATH } from "../../api/constant.mjs";
@@ -158,7 +158,7 @@ function HomePage() {
         ))}
       </Row>
       {productsToRender.length > productLimit && (
-        <div className="text-center mb-5 pb-2">
+        <div className="text-center mt-4 mb-5 pb-2">
           <StyledButton onClick={handleLoadMore}>Load more</StyledButton>
         </div>
       )}
