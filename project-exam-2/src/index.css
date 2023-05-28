@@ -12,11 +12,11 @@ code {
 
 :root {
   --primary: #d31775;
-  --primary-light: #ff66bd;
+  --primary-light: #de54a2;
   --primary-dark: #a70c59;
-  --secondary: #f2bfbf;
-  --secondary-light: #f7e6e6c7;
-  --secondary-dark: #b98b8b;
+  --secondary: #c07893;
+  --secondary-light: #e5b5c782;
+  --secondary-dark: #a9607b;
   --success: #36b37e;
   --success-light: #79f2c0;
   --success-dark: #00875a;
@@ -30,7 +30,7 @@ code {
   --neutral-100: #f8f9fa;
   --neutral-200: #e9ecef;
   --neutral-300: #dee2e6;
-  --neutral-400: #939da7;
+  --neutral-400: #6c7684;
   --background-footer: #f8f9fa;
   --dark: #000000bd;
 }

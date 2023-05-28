@@ -328,7 +328,26 @@ function VenuePage() {
                         <input type="hidden" {...register("guests")} value={guests} />
                       </div>
                       <div className="d-flex flex-grow-1">
-                        {user && !isOwner ? (
+                        {!user ? (
+                          <Link
+                            to="/login"
+                            className="mt-2 py-2 d-flex flex-grow-1 justify-content-center"
+                            style={{ textDecoration: "none" }}
+                          >
+                            <StyledButton className="mt-2 py-2 d-flex flex-grow-1 justify-content-center">
+                              <strong>Log in</strong>
+                            </StyledButton>
+                          </Link>
+                        ) : isOwner ? (
+                          <div className="mt-2 py-2 d-flex flex-grow-1 justify-content-center">
+                            <StyledButton
+                              disabled
+                              className={`mt-2 py-2 d-flex flex-grow-1 justify-content-center ${styles.disabledButton}`}
+                            >
+                              <strong>Owner</strong>
+                            </StyledButton>
+                          </div>
+                        ) : (
                           <div className="mt-2 py-2 d-flex flex-grow-1 justify-content-center">
                             <StyledButton
                               type="submit"
@@ -337,19 +356,6 @@ function VenuePage() {
                               <strong>Reserve</strong>
                             </StyledButton>
                           </div>
-                        ) : (
-                          <Link
-                            to="/login"
-                            className="mt-2 py-2 d-flex flex-grow-1 justify-content-center"
-                            style={{ textDecoration: "none" }}
-                          >
-                            <StyledButton
-                              disabled={isOwner}
-                              className="mt-2 py-2 d-flex flex-grow-1 justify-content-center"
-                            >
-                              <strong>{isOwner ? "Owner" : "Log in"}</strong>
-                            </StyledButton>
-                          </Link>
                         )}
                       </div>
                     </form>

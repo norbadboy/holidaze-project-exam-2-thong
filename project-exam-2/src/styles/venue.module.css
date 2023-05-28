@@ -69,6 +69,14 @@
 .description_Body {
   padding: 0;
 }
+.disabledButton {
+  background-color: var(--neutral-400);
+  border: none;
+  cursor: not-allowed;
+}
+.disabledButton:active {
+  background-color: var(--neutral-400);
+}
 
 /* datepicker */
 .datesAndGuestsContainer {
@@ -86,6 +94,7 @@
   background-color: var(--neutral-0);
   color: black;
   border: 1px solid var(--neutral-400);
+  cursor: pointer;
 }
 /* guests toggle */
 .guestsDropdownToggle {

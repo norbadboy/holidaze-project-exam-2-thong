@@ -14,8 +14,16 @@ export const BaseButton = styled.button`
 export const StyledButton = styled(BaseButton)`
   background-color: ${(props) => props.theme.color.primary};
   color: ${(props) => props.theme.color.neutral0};
+  &:active {
+    background-color: ${(props) => props.theme.color.primaryLight};
+  }
+`;
+
+export const SecondStyledButton = styled(BaseButton)`
+  background-color: ${(props) => props.theme.color.secondaryDark};
+  color: ${(props) => props.theme.color.neutral0};
 
   &:active {
-    background-color: pink;
+    background-color: ${(props) => props.theme.color.secondary};
   }
 `;
