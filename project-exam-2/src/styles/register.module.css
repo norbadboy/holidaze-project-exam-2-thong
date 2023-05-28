@@ -1,0 +1,124 @@
+.signUp_Container {
+  margin: 110px 0 50px 0;
+}
+
+/* Sign up col*/
+.signUpRow_Container {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Already have account col*/
+.haveAccount_Container {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  border-top: none;
+}
+.haveAccount_Title {
+  margin-top: 35px;
+  display: flex;
+  justify-content: center;
+}
+.haveAccount_Title_Mobile {
+  display: none;
+}
+
+/* Buttons */
+.redirectToLogin_Button {
+  display: flex;
+  border: 1px solid var(--dark) !important;
+  background-color: var(--neutral-0);
+  color: var(--dark);
+  width: 290px;
+}
+.redirectToLogin_Button:hover {
+  background-color: var(--dark);
+  color: var(--neutral-0);
+  border-color: var(--dark);
+}
+.redirectToLogin_Button:active {
+  background-color: var(--dark);
+  color: var(--neutral-0);
+  border-color: var(--dark);
+}
+.redirectToLogin_Link {
+  text-decoration: none;
+}
+.redirectToLogin_IconContainer {
+  height: 30px;
+}
+.redirectToLogin_Icon {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.redirectToLogin_Text {
+  margin-left: 15px;
+}
+.redirect_ButtonContainer {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+.redirect_Button {
+  display: flex;
+  justify-content: start;
+  width: 290px;
+}
+.redirect_IconContainer {
+  height: 25px;
+  display: flex;
+  align-items: center;
+}
+.redirect_Text {
+  margin-left: 15px;
+}
+.redirect_Icon {
+  font-size: 20px;
+}
+
+@media screen and (max-width: 990px) {
+  .haveAccount_Container {
+    border-top: 1px solid var(--neutral-400);
+  }
+  .haveAccount_Title {
+    margin-top: 50px;
+  }
+  .signUp_Body {
+    margin-bottom: 40px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .haveAccount_Title_Mobile {
+    display: flex;
+    justify-content: center;
+    margin-top: 35px;
+  }
+  .haveAccount_Title {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .signUp_Input {
+    font-size: 20px;
+  }
+  .redirectToLogin_Text,
+  .redirect_Text {
+    font-size: 14px;
+  }
+  .redirect_Button,
+  .redirectToLogin_Button {
+    width: 255px;
+  }
+  .redirectToLogin_Icon,
+  .redirect_Icon {
+    font-size: 17px;
+  }
+  .redirect_Text,
+  .redirectToLogin_Text {
+    margin-left: 12px;
+  }
+}

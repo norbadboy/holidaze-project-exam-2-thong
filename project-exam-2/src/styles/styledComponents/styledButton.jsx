@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const BaseButton = styled.button`
+export const BaseButton = styled.button`
   padding: 8px 17px;
   border-radius: 7px;
   border: none;
@@ -14,8 +14,16 @@ const BaseButton = styled.button`
 export const StyledButton = styled(BaseButton)`
   background-color: ${(props) => props.theme.color.primary};
   color: ${(props) => props.theme.color.neutral0};
+  &:active {
+    background-color: ${(props) => props.theme.color.primaryLight};
+  }
+`;
 
-  &:hover {
-    background-color: pink;
+export const SecondStyledButton = styled(BaseButton)`
+  background-color: ${(props) => props.theme.color.secondaryDark};
+  color: ${(props) => props.theme.color.neutral0};
+
+  &:active {
+    background-color: ${(props) => props.theme.color.secondary};
   }
 `;

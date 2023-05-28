@@ -71,6 +71,11 @@ function LoggedOutHeader() {
             )}
           </Navbar.Brand>
         </div>
+        <div className={styles.holidazeLink_Container}>
+          <Nav.Link as={Link} to="/login" className={styles.holidazeLink}>
+            Holidaze your venue
+          </Nav.Link>
+        </div>
         {user && (
           <Navbar.Toggle
             aria-controls="basic-navbar-nav"
@@ -110,11 +115,19 @@ function LoggedOutHeader() {
                     <div>
                       <Nav.Link
                         as={Link}
+                        to="/bookings"
+                        className={styles.navLink}
+                        onClick={() => setExpanded(false)}
+                      >
+                        My bookings
+                      </Nav.Link>
+                      <Nav.Link
+                        as={Link}
                         to="/manage-bookings"
                         className={styles.navLink}
                         onClick={() => setExpanded(false)}
                       >
-                        Bookings
+                        My venues
                       </Nav.Link>
                       <div className={styles.breakLine} />
 
@@ -161,7 +174,7 @@ function LoggedOutHeader() {
                         className={styles.navLink}
                         onClick={() => setExpanded(false)}
                       >
-                        Bookings
+                        My bookings
                       </Nav.Link>
                       <Nav.Link
                         as={Link}

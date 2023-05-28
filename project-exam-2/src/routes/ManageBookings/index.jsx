@@ -1,10 +1,11 @@
-import { Row, Col, Card, Dropdown } from "react-bootstrap";
+import { Row, Col, Card, Dropdown, Button } from "react-bootstrap";
 import { useState, useEffect, useCallback } from "react";
 import { useUser } from "../../contexts/userContext.jsx";
 import { getBookingOfVenueByProfile } from "../../api/venues/getByProfile.mjs";
 import BookingsModal from "../../components/manageBookingsModal.jsx";
 import styles from "../../styles/manageBookings.module.css";
-import { StyledButton } from "../../styles/styledComponents/styledButton.jsx";
+import { SecondStyledButton } from "../../styles/styledComponents/styledButton.jsx";
+import { Link } from "react-router-dom";
 
 function ManageBookings() {
   const [venueBookings, setVenueBookings] = useState([]);
@@ -58,7 +59,7 @@ function ManageBookings() {
     <Row className="justify-content-center">
       <Col className="mt-5">
         <div className="pt-5">
-          <h1 className={styles.title}>Manage Bookings</h1>
+          <h1 className={styles.title}>Manage bookings</h1>
         </div>
         <hr />
         <div className="d-flex justify-content-end mb-4">
@@ -104,14 +105,20 @@ function ManageBookings() {
                       <strong>Updated:</strong> {formatDate(venue.updated)}
                     </Card.Text>
                   </div>
-                  <div className="d-flex justify-content-center mt-4">
-                    <StyledButton
-                      className={styles.manageBookingsCard_Button}
-                      onClick={() => handleShow(venue.bookings)}
-                    >
-                      View Bookings
-                    </StyledButton>
-                  </div>
+                  <Row className={styles.viewButton_Container}>
+                    <Col className={styles.viewButton_Body}>
+                      <SecondStyledButton onClick={() => handleShow(venue.bookings)}>
+                        View bookings
+                      </SecondStyledButton>
+                    </Col>
+                    <Col className={styles.viewButton_Body}>
+                      <Link to={`/${venue.id}`}>
+                        <Button variant="secondary" className={styles.viewButton}>
+                          View venue
+                        </Button>
+                      </Link>
+                    </Col>
+                  </Row>
                 </Card>
               </Col>
             ))}

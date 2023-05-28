@@ -10,7 +10,7 @@ import Theme from "./styles/theme";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Container fluid="sm">
+  <Container fluid="lg">
     <BrowserRouter>
       <Theme>
         <GlobalStyle />

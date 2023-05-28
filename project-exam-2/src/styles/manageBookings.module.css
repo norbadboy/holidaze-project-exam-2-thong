@@ -3,12 +3,14 @@
   height: 350px;
   width: 100%;
   object-fit: cover;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 /* Booking card */
 .manageBookingsCard_Container {
   border: none;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
+  margin-top: 12px;
 }
 .manageBookingsCard_Title {
   font-size: 21px;
@@ -19,10 +21,44 @@
 .manageBookingsCard_Subtitle {
   font-size: 17px;
   margin-top: 3px;
+  text-transform: capitalize;
 }
 .manageBookingsCard_Date {
   font-size: 15px;
   display: flex;
   flex-direction: column;
   margin-bottom: 30px;
+}
+
+/* Buttons */
+.viewButton_Container {
+  margin-top: 25px;
+  display: flex;
+}
+.viewButton_Body {
+  display: flex;
+  justify-content: center;
+}
+.viewButton {
+  background-color: var(--neutral-400);
+  border: none;
+}
+.viewButton:hover {
+  background-color: var(--neutral-400);
+}
+
+@media (max-width: 880px) {
+  .viewButton_Container {
+    flex-direction: column;
+  }
+  .viewButton_Body {
+    margin-bottom: 18px;
+    justify-content: start;
+  }
+}
+
+@media (max-width: 500px) {
+  .manageBookingsImage {
+    height: 290px;
+  }
 }

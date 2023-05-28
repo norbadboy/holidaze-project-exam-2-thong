@@ -1,3 +1,4 @@
+/* Navbar */
 .navbarContainer {
   display: flex;
   justify-content: space-between;
@@ -32,6 +33,26 @@
 .navLink:hover {
   background-color: var(--secondary-light);
 }
+.holidazeLink_Container {
+  display: flex;
+  flex: 1;
+  justify-content: end;
+}
+.holidazeLink {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  color: var(--dark);
+  text-decoration: none;
+  transition: 0.3s;
+  padding: 10px 17px;
+  margin-right: 10px;
+  font-weight: 500;
+}
+.holidazeLink:hover {
+  background-color: var(--secondary-light);
+  border-radius: 25px;
+}
 .breakLine {
   border-top: 1px solid var(--neutral-400);
   margin: 10px 0;
@@ -41,13 +62,10 @@
 .pillToggle {
   padding: 5px 7px;
   border-radius: 25px;
-  /* adjust the border-radius value as needed */
   border: 1px solid #ccc;
-  /* add any other border styles you need */
 }
-.navbarToggle:hover {
+.pillToggle:hover {
   box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.253);
-  /* adjust the box-shadow values as needed */
 }
 .avatarImage {
   width: 40px;
@@ -77,8 +95,26 @@
 .searchBarContainer {
   position: relative;
   display: flex;
+  flex: 1;
   flex-direction: column;
   justify-content: center;
+  max-width: 400px;
+}
+.searchForm_Container {
+  border-radius: 20px;
+}
+.searchForm_Container:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  cursor: pointer;
+}
+.searchInput {
+  border-radius: 20px;
+}
+.searchButton {
+  border-radius: 0 20px 20px 0 !important;
+}
+.searchBarIcon {
+  margin-bottom: 5px;
 }
 .dropdown {
   position: absolute;
@@ -122,7 +158,6 @@
   .searchBarContainer {
     flex-direction: column;
   }
-
   .dropdown {
     top: calc(100% + 10px);
     left: -10px;
@@ -136,5 +171,8 @@
 @media (max-width: 500px) {
   .navItemsBody {
     width: 60%;
+  }
+  .holidazeLink_Container {
+    display: none;
   }
 }

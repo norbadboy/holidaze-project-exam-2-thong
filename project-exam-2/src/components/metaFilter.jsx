@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import styles from "../styles/homePage.module.css";
 import { FaWifi } from "react-icons/fa";
+import { BaseButton } from "../styles/styledComponents/styledButton";
 
 const MetaFilter = ({ onFilter }) => {
   const [showModal, setShowModal] = useState(false);
@@ -31,10 +32,10 @@ const MetaFilter = ({ onFilter }) => {
 
   return (
     <div className="filter-container">
-      <Button variant="primary" onClick={handleShow} className={styles.filterButton}>
+      <BaseButton variant="primary" onClick={handleShow} className={styles.filterButton}>
         <FaWifi className={styles.filterButton_Icon} />
         Amenities
-      </Button>
+      </BaseButton>
 
       <Modal show={showModal} onHide={handleClose}>
         <Modal.Header closeButton>

@@ -1,0 +1,125 @@
+.footerContainer {
+  display: flex;
+  position: sticky;
+  bottom: 0;
+  background-color: var(--background-footer);
+  border-radius: 10px;
+  height: 70px;
+}
+
+.footerLink_Container {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+}
+.footerLink {
+  text-decoration: none;
+  color: #000;
+  margin: 0 8px 0 8px;
+}
+.footerLink:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 1.3px;
+  text-underline-offset: 2px;
+  color: #000;
+}
+.footerSocial_Container {
+  display: flex;
+  align-items: center;
+  padding: 7px 10px 10px 0;
+}
+.footerIcon {
+  color: var(--primary-dark);
+  font-size: 1.25rem;
+  margin: 0 0.5rem;
+}
+.footerIcon:hover {
+  color: var(--primary);
+}
+
+/* Offcanvas footer */
+.offcanvasButtonContainer {
+  display: flex;
+  justify-content: center;
+  padding: 12px;
+}
+.offcanvasButton {
+  background-color: var(--neutral-400);
+  border-color: var(--neutral-400);
+  color: var(--neutral-0);
+  padding: 0.2rem 0.4rem;
+}
+.offcanvasButton:hover {
+  background-color: var(--neutral-400);
+  border-color: var(--neutral-400);
+}
+.offcanvasButton:active {
+  background-color: var(--neutral-400);
+  border-color: var(--neutral-400);
+}
+.companyName_Container {
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+}
+.companyName_Text {
+  margin-left: 7px;
+  margin-top: 20px;
+}
+.offcanvasCustom_Container {
+  height: 250px !important;
+}
+.offcanvasCustom {
+  height: 700px;
+  padding: 0 10px;
+}
+
+/* Responsive styling */
+.desktop {
+  display: flex;
+}
+.mobile {
+  display: none;
+}
+.companyName_Desktop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (max-width: 761px) {
+  .desktop {
+    display: none;
+  }
+  .mobile {
+    display: flex;
+  }
+  .companyName_Container {
+    padding-left: 16px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .companyName_Container {
+    flex-direction: column;
+  }
+  .footerContainer {
+    height: 90px;
+  }
+  .offcanvasButtonContainer {
+    padding: 22px;
+  }
+}
+
+@media screen and (max-width: 399px) {
+  .companyName_Container {
+    padding-left: 14px;
+    align-items: start;
+  }
+  .companyName_Text {
+    margin: 0;
+  }
+  .offcanvasButtonContainer {
+    padding: 21px 12px;
+  }
+}

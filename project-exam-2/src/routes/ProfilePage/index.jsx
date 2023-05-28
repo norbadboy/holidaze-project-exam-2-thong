@@ -4,7 +4,7 @@ import { useUser } from "../../contexts/userContext.jsx";
 import { Row, Col, Modal, Button } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { StyledButton } from "../../styles/styledComponents/styledButton.jsx";
-import styles from "../../styles/header.module.css";
+import styles from "../../styles/profilePage.module.css";
 
 function ProfilePage() {
   const [profile, setProfile] = useState(null);
@@ -56,12 +56,12 @@ function ProfilePage() {
   }
 
   return (
-    <div>
-      <div className="my-5">
+    <div className="px-3">
+      <div className="mt-5 mb-4">
         <h1 className="pt-5">Personal info</h1>
       </div>
       {profile && (
-        <div className="infoContainer d-flex flex-column flex-md-row justify-content-between">
+        <div className={`${styles.userInfo_Container} flex-md-row`}>
           <Row className="d-flex flex-column flex-grow-1 pe-5 mb-2">
             <Col>
               <div className="mb-3">
@@ -95,13 +95,12 @@ function ProfilePage() {
             </Col>
           </Row>
           <Row className="d-flex flex-grow-1">
-            <div className="pt-2">
-              <Col className="d-flex flex-column align-items-center">
+            <div className={styles.userInfo_ImageContainer}>
+              <Col className={styles.userInfo_ImageBody}>
                 <img
                   src={profile.avatar}
                   alt="Avatar"
-                  className="rounded img-fluid"
-                  style={{ height: "350px" }}
+                  className={`rounded img-fluid ${styles.userInfo_Image}`}
                 />
                 <StyledButton className="mt-3" onClick={() => setShowModal(true)}>
                   Change Avatar

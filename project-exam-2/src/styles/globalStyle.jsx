@@ -3,11 +3,11 @@ import { createGlobalStyle } from "styled-components";
 const GlobalStyle = createGlobalStyle`
 html {
     --color-primary: #D31775;
-    --color-primary-light: #FF66BD;
+    --color-primary-light: #de54a2;
     --color-primary-dark: #A70C59;
-    --color-secondary: #f2bfbf;
-    --color-secondary-light: #f7e6e6;
-    --color-secondary-dark: #b98b8b;
+    --color-secondary: #c07893;
+    --color-secondary-light: #e5b5c782;
+    --color-secondary-dark: #a9607b;
     --color-success: #36b37e;
     --color-success-light: #79f2c0;
     --color-success-dark: #00875a;
@@ -18,7 +18,12 @@ html {
     --color-danger-light: #ff8f71;
     --color-danger-dark: #b21f00;
     --color-neutral-0: #ffffff;
+    --color-neutral-100: #f8f9fa;
+    --color-neutral-200: #e9ecef;
+    --color-neutral-300: #dee2e6;
+    --color-neutral-400: #6C7684;
     --color-background: #1e1e1e;
+    --color-background-footer: #f8f9fa;
 }
 body {
     height: 100%;

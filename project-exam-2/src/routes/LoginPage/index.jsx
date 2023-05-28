@@ -1,7 +1,7 @@
 import * as yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { StyledButton } from "../../styles/styledComponents/styledButton";
-import { Card } from "react-bootstrap";
+import { BaseButton, StyledButton } from "../../styles/styledComponents/styledButton";
+import { Card, Row, Col } from "react-bootstrap";
 import { loginFunction } from "../../api/auth/login.mjs";
 import { useNavigate, Link } from "react-router-dom";
 import styles from "../../styles/login.module.css";
@@ -55,55 +55,72 @@ const Login = () => {
   };
 
   return (
-    <Card className={`${styles.loginBody} p-5 d-flex`}>
-      <div className="d-flex justify-content-between">
-        <div className="flex-grow-1">
-          <div className="d-flex justify-content-center">
-            <h1>Login</h1>
+    <Card className={styles.loginBody}>
+      <Row>
+        <Col lg={6}>
+          <div className="flex-grow-1">
+            <div className="d-flex justify-content-center">
+              <h1>Login</h1>
+            </div>
+            <Formik
+              initialValues={initialValues}
+              validationSchema={validationSchema}
+              onSubmit={onSubmit}
+            >
+              {({ isSubmitting }) => (
+                <Form className="d-flex flex-column justify-content-center align-items-center">
+                  <div className={styles.signUpForm_Body}>
+                    <div className="d-flex flex-column">
+                      <ErrorMessage name="email">
+                        {(msg) => (
+                          <div
+                            style={{
+                              color: "red",
+                              fontSize: "0.8rem",
+                              marginBottom: "0.2rem",
+                            }}
+                          >
+                            {msg}
+                          </div>
+                        )}
+                      </ErrorMessage>
+                      <label htmlFor="email"></label>
+                      <Field type="email" name="email" className={styles.loginFieldText} />
+                    </div>
+                    <div>
+                      <ErrorMessage name="password">
+                        {(msg) => (
+                          <div
+                            style={{
+                              color: "red",
+                              fontSize: "0.8rem",
+                              marginBottom: "0.2rem",
+                            }}
+                          >
+                            {msg}
+                          </div>
+                        )}
+                      </ErrorMessage>
+                      <label htmlFor="password"></label>
+                      <Field type="password" name="password" className={styles.loginFieldText} />
+                    </div>
+                  </div>
+                  <StyledButton type="submit" disabled={isSubmitting}>
+                    Log in
+                  </StyledButton>
+                </Form>
+              )}
+            </Formik>
           </div>
-          <Formik
-            initialValues={initialValues}
-            validationSchema={validationSchema}
-            onSubmit={onSubmit}
-          >
-            {({ isSubmitting }) => (
-              <Form className="d-flex flex-column justify-content-center align-items-center">
-                <div className="my-4">
-                  <div className="d-flex flex-column">
-                    <ErrorMessage name="email">
-                      {(msg) => (
-                        <div
-                          style={{
-                            color: "red",
-                            fontSize: "0.8rem",
-                            marginBottom: "0.2rem",
-                          }}
-                        >
-                          {msg}
-                        </div>
-                      )}
-                    </ErrorMessage>
-                    <label htmlFor="email"></label>
-                    <Field type="email" name="email" className={styles.loginFieldText} />
-                  </div>
-                  <div>
-                    <ErrorMessage name="password" />
-                    <label htmlFor="password"></label>
-                    <Field type="password" name="password" className={styles.loginFieldText} />
-                  </div>
-                </div>
-                <StyledButton type="submit" disabled={isSubmitting}>
-                  Log in
-                </StyledButton>
-              </Form>
-            )}
-          </Formik>
-        </div>
-        <div className="redirectToRegister flex-grow-0 d-flex flex-column align-items-center justify-content-center">
-          <h5>Don't have an account?</h5>
-          <Link to="/register">Register</Link>
-        </div>
-      </div>
+        </Col>
+        <Col lg={6} className={styles.redirectToRegister_Container}>
+          <h4 className={styles.redirectToRegister_Title}>Don't have an account?</h4>
+          <h5 className={styles.redirectToRegister_Title_Mobile}>Or register now!</h5>
+          <Link to="/register">
+            <BaseButton className={styles.redirectToRegister_Button}>Register</BaseButton>
+          </Link>
+        </Col>
+      </Row>
     </Card>
   );
 };

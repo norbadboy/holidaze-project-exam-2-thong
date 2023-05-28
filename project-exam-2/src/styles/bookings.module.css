@@ -1,26 +1,32 @@
+.userBookings_Container {
+  padding: 0 20px;
+}
+
+/* Media */
 .myBookingsImage {
   border-radius: 4%;
   height: 350px;
   width: 100%;
   object-fit: cover;
   cursor: pointer;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 /* Bookings card */
 .myBookingsCard_Container {
   border: none;
-  margin-bottom: 50px;
-  cursor: pointer;
+  margin-bottom: 60px;
+  margin-top: 12px;
 }
 .myBookingsCard_Title {
   font-size: 21px;
-  margin-top: 15px;
   display: flex;
   justify-content: space-between;
 }
 .myBookingsCard_Subtitle {
   font-size: 17px;
   margin-top: 3px;
+  height: 35px;
 }
 .myBookingsCard_Text {
   font-size: 18px;
@@ -29,7 +35,19 @@
   font-size: 15px;
   margin-top: 15px;
 }
+.viewBookingButton {
+  background-color: var(--secondary-dark);
+  color: var(--neutral-0);
+}
 
+/* Modal */
+.userBookings_ModalBody {
+  padding: 30px 65px;
+}
+.userBookings_ModalFooter,
+.userBookings_ModalHeader {
+  padding: 15px 65px;
+}
 /* datepicker */
 .datesAndGuestsContainer {
   max-width: 450px;
@@ -63,4 +81,40 @@
 }
 .guestsDropdownToggle::after {
   display: none;
+}
+
+/* screen sizes */
+@media (max-width: 500px) {
+  .datesAndGuestsContainer {
+    padding: 25px 35px;
+  }
+  .userBookings_ModalBody {
+    padding: 30px 35px;
+  }
+  .userBookings_ModalFooter,
+  .userBookings_ModalHeader {
+    padding: 15px 35px;
+  }
+}
+
+@media (max-width: 400px) {
+  .userBookings_Container {
+    padding: 0 10px;
+  }
+  .userBookings_ModalBody {
+    padding: 30px 20px;
+  }
+  .userBookings_ModalFooter,
+  .userBookings_ModalHeader {
+    padding: 15px 20px;
+  }
+  .myBookingsImage {
+    height: 260px;
+  }
+  .myBookingsCard_Title {
+    flex-direction: column;
+  }
+  .myBookingsCard_Text {
+    margin-top: 5px;
+  }
 }
