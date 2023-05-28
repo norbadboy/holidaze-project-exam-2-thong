@@ -6,8 +6,8 @@ const action2 = "/venues";
 const method = "GET";
 
 // Show venues from a profile
-const getVenuesByProfile = async (name) => {
-  const endpoint = API_PATH + action + "/" + name + "/venues";
+const getVenuesByProfile = async (name, sort, sortOrder) => {
+  const endpoint = `${API_PATH}${action}/${name}${action2}/?_owner=true&_bookings=true&sort=${sort}&sortOrder=${sortOrder}`;
 
   try {
     const response = await autFetch(endpoint, { method });
