@@ -10,8 +10,6 @@ const PriceFilter = ({ onFilter }) => {
   const handleShow = () => setShowModal(true);
 
   const handlePriceSelect = (range) => {
-    console.log("Selected price range:", range); // Debugging statement
-
     onFilter(range);
     handleClose();
   };

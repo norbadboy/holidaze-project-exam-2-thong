@@ -52,7 +52,6 @@ function UserBookings() {
   const fetchUserBookings = useCallback(async () => {
     try {
       const bookings = await getAllBookingsByProfile(userName, sort, sortOrder);
-      console.log(bookings);
       setUserBookings(bookings);
     } catch (error) {
       console.error(error);

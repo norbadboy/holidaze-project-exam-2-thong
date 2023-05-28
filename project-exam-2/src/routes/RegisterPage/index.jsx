@@ -48,7 +48,6 @@ function SignUpForm() {
   });
 
   const onSubmit = async (data) => {
-    console.log(data);
     try {
       // check if profile already exists
       const existingProfile = await loginFunction(data);

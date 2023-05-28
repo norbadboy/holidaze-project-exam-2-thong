@@ -48,7 +48,6 @@ function VenuePage() {
 
     try {
       const response = await createBooking(bookingData);
-      console.log(response); // check response
 
       if (response.status === 201 || response.status === 200) {
         // If successful, show the success modal and after 2 seconds redirect to /bookings
