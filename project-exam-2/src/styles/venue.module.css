@@ -29,24 +29,36 @@
   background-color: var(--dark);
   border-radius: 50%;
 }
-.titleContainer_location {
-  text-transform: capitalize;
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 1.3px;
-  font-weight: 500;
+.breakLine {
+  width: 640px;
+  margin-left: 15px;
+  margin-top: 15px;
+  margin-bottom: 40px;
+}
+
+/* Title */
+.titleLocation_Container {
+  font-weight: 400;
   font-size: 20px;
   display: flex;
   flex-direction: column;
   align-items: start;
   justify-content: start;
 }
+.titleContainer_Text {
+  text-transform: capitalize;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 1.3px;
+}
 .ownerContainer {
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
+  margin-top: 40px;
 }
 
+/* Description and Booking */
 .description_Container {
   display: flex;
   flex-direction: column;
@@ -56,6 +68,41 @@
 }
 .description_Body {
   padding: 0;
+}
+
+/* datepicker */
+.datesAndGuestsContainer {
+  max-width: 450px;
+  max-height: 320px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.datePickerContainer {
+  width: 100%;
+  display: flex;
+}
+.datePicker {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--neutral-0);
+  color: black;
+  border: 1px solid var(--neutral-400);
+}
+/* guests toggle */
+.guestsDropdownToggle {
+  width: 100%;
+  height: 80px;
+  padding: 10px;
+  background-color: var(--neutral-0);
+  color: black;
+  border: 1px solid var(--neutral-400);
+}
+.guestsDropdownToggle:hover {
+  background-color: var(--neutral-200);
+  color: black;
+  border: 1px solid var(--neutral-400);
+}
+.guestsDropdownToggle::after {
+  display: none;
 }
 
 /* Media */
@@ -94,49 +141,34 @@
   margin: 0 15px;
 }
 
-/* datepicker */
-.datesAndGuestsContainer {
-  max-width: 450px;
-  max-height: 320px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-.datePickerContainer {
-  width: 100%;
-  display: flex;
-}
-
-.datePicker {
-  width: 100%;
-  padding: 10px;
-  background-color: var(--neutral-0);
-  color: black;
-  border: 1px solid var(--neutral-400);
-}
-
-/* guests toggle */
-.guestsDropdownToggle {
-  width: 100%;
-  height: 80px;
-  padding: 10px;
-  background-color: var(--neutral-0);
-  color: black;
-  border: 1px solid var(--neutral-400);
-}
-.guestsDropdownToggle:hover {
-  background-color: var(--neutral-200);
-  color: black;
-  border: 1px solid var(--neutral-400);
-}
-.guestsDropdownToggle::after {
-  display: none;
-}
-
 /* Location */
-.addressContainer {
+.locationAddress_Text {
   text-transform: capitalize;
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 1.3px;
+}
+.locationAddress_MapContainer {
+  width: 1205px;
+  height: 500px;
+}
+.googleMap {
+  width: 100%;
+  height: 100%;
+  margin-top: 20px;
+  border-radius: 3px;
+}
+
+@media screen and (max-width: 1410px) {
+  .googleMap {
+    width: 89%;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .googleMap {
+    width: 78%;
+  }
 }
 
 @media screen and (max-width: 999px) {
@@ -145,5 +177,83 @@
   }
   .datePickerContainer {
     flex-direction: column;
+  }
+  .locationAddress_MapContainer {
+    width: 665px;
+    height: 390px;
+  }
+  .breakLine {
+    width: 460px;
+  }
+  .datesAndGuestsContainer {
+    max-height: 400px;
+  }
+}
+
+@media screen and (max-width: 769px) {
+  .breakLine {
+    width: 360px;
+  }
+  .venueImgContainer img {
+    max-height: 540px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .locationAddress_MapContainer {
+    height: 290px;
+  }
+  .googleMap {
+    width: 60%;
+  }
+  .descriptionAndBook_Container {
+    flex-direction: column;
+  }
+  .breakLine {
+    width: 520px;
+  }
+  .venueImgContainer img {
+    max-height: 440px;
+  }
+  .venuePage_Title {
+    font-size: 35px;
+    margin-bottom: 20px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .locationAddress_MapContainer {
+    height: 290px;
+  }
+  .googleMap {
+    width: 52%;
+  }
+  .locationSection_Container {
+    padding-top: 25px;
+  }
+  .breakLine {
+    width: 340px;
+  }
+  .venueImgContainer img {
+    max-height: 400px;
+  }
+  .rating_Icon {
+    width: 18px;
+    height: 18px;
+  }
+  h5 {
+    font-size: 22px;
+  }
+}
+
+@media screen and (max-width: 321px) {
+  .breakLine {
+    width: 290px;
+  }
+  .googleMap {
+    width: 43.5%;
+  }
+  .venueImgContainer img {
+    max-height: 330px;
   }
 }

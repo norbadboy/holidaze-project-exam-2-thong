@@ -130,14 +130,18 @@ function VenuePage() {
               <h5>{venue.rating}</h5>
             </div>
             <div className="d-flex flex-1 flex-column justify-content-center mb-1 mx-3">
-              <div className={styles.dot}></div>
+              <div className={styles.dot}> </div>
             </div>
-            <div className={styles.titleContainer_location}>
+            <div className={styles.titleLocation_Container}>
               {venue.location?.address === "Unknown" ||
               venue.location?.city === "Unknown" ||
-              venue.location?.country === "Unknown"
-                ? "Contact manager for location"
-                : `${venue.location?.address}, ${venue.location?.city}, ${venue.location?.country}`}
+              venue.location?.country === "Unknown" ? (
+                <div className={styles.contactManagerMessage}>Contact manager for location</div>
+              ) : (
+                <div className={styles.titleContainer_Text}>
+                  {venue.location?.address}, {venue.location?.city}, {venue.location?.country}
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -208,7 +212,7 @@ function VenuePage() {
               View All Images
             </Button>
           </div>
-          <Card.Body className="mt-5">
+          <Card.Body className="mt-4">
             <div className={styles.ownerContainer}>
               <div className="d-flex">
                 <h5>
@@ -225,7 +229,7 @@ function VenuePage() {
               </div>
               <Card.Text>Max guests: {venue.maxGuests}</Card.Text>
             </div>
-            <Row className="d-flex">
+            <Row className={styles.descriptionAndBook_Container}>
               <Col>
                 <hr />
                 <Card className={styles.description_Container}>
@@ -353,58 +357,78 @@ function VenuePage() {
                 </Card>
               </Col>
             </Row>
-            <Row>
-              <Col>
-                <Card className="amenitiesContainer mt-4">
-                  <Card.Body>
-                    <h5>What this place offers</h5>
-                    <div className="offersContainer">
-                      <ul style={{ padding: "0" }}>
-                        <li className="d-flex mt-2">
-                          <FaWifi className={styles.metaIcon} />
-                          <div>
-                            <strong>Wifi: </strong> {venue.meta?.wifi ? "Yes" : "No"}
-                          </div>
-                        </li>
-                        <li className="d-flex mt-2">
-                          <FaParking className={styles.metaIcon} />
-                          <div>
-                            <strong>Parking: </strong>
-                            {venue.meta?.parking ? "Yes" : "No"}
-                          </div>
-                        </li>
-                        <li className="d-flex mt-2">
-                          <MdFreeBreakfast className={styles.metaIcon} />
-                          <div>
-                            {" "}
-                            <strong>Breakfast: </strong>
-                            {venue.meta?.breakfast ? "Yes" : "No"}
-                          </div>
-                        </li>
-                        <li className="d-flex mt-2">
-                          <MdPets className={styles.metaIcon} />
-                          <div>
-                            <strong>Pets: </strong> {venue.meta?.pets ? "Allowed" : "Not allowed"}
-                          </div>
-                        </li>
-                      </ul>
+            <Row className="mt-4 d-flex flex-column">
+              <hr className={styles.breakLine} />
+              <Col className="d-flex">
+                <div className={styles.locationSection_Container}>
+                  <h5>Where you'll be</h5>
+                  <div>
+                    <div className={styles.locationAddress_Container}>
+                      {venue.location?.address === "Unknown" ||
+                      venue.location?.city === "Unknown" ||
+                      venue.location?.country === "Unknown" ? (
+                        <div className={styles.contactManagerMessage}>
+                          Contact manager for location
+                        </div>
+                      ) : (
+                        <div className={styles.locationAddress_Text}>
+                          {venue.location?.address}, {venue.location?.city},{" "}
+                          {venue.location?.country}
+                        </div>
+                      )}
                     </div>
-                  </Card.Body>
-                </Card>
+                    <div className={styles.locationAddress_MapContainer}>
+                      <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20049021.957695697!2d-0.763671874999963!3d52.163595497788464!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46ed8886cfadda85%3A0x72ef99e6b3fcf079!2sEuropa!5e0!3m2!1sno!2sno!4v1685256908597!5m2!1sno!2sno"
+                        allowFullScreen=""
+                        loading="lazy"
+                        title="Google Map"
+                        className={styles.googleMap}
+                      ></iframe>
+                    </div>
+                  </div>
+                </div>
               </Col>
             </Row>
-            <div className="locationContainer mt-4">
-              <h5>Where you'll be</h5>
-              <div>
-                <div className={styles.addressContainer}>
-                  {venue.location?.address === "Unknown" ||
-                  venue.location?.city === "Unknown" ||
-                  venue.location?.country === "Unknown"
-                    ? "Please contact manager for location"
-                    : `${venue.location?.address}, ${venue.location?.city}, ${venue.location?.country}`}
+            <Row className="mt-5 d-flex flex-column">
+              <hr className={styles.breakLine} />
+              <Col className="d-flex">
+                <div className={styles.amenities_Container}>
+                  <h5>What this place offers</h5>
+                  <div className="offersContainer">
+                    <ul style={{ padding: "0" }}>
+                      <li className="d-flex mt-2">
+                        <FaWifi className={styles.metaIcon} />
+                        <div>
+                          <strong>Wifi: </strong> {venue.meta?.wifi ? "Yes" : "No"}
+                        </div>
+                      </li>
+                      <li className="d-flex mt-2">
+                        <FaParking className={styles.metaIcon} />
+                        <div>
+                          <strong>Parking: </strong>
+                          {venue.meta?.parking ? "Yes" : "No"}
+                        </div>
+                      </li>
+                      <li className="d-flex mt-2">
+                        <MdFreeBreakfast className={styles.metaIcon} />
+                        <div>
+                          {" "}
+                          <strong>Breakfast: </strong>
+                          {venue.meta?.breakfast ? "Yes" : "No"}
+                        </div>
+                      </li>
+                      <li className="d-flex mt-2">
+                        <MdPets className={styles.metaIcon} />
+                        <div>
+                          <strong>Pets: </strong> {venue.meta?.pets ? "Allowed" : "Not allowed"}
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-              </div>
-            </div>
+              </Col>
+            </Row>
           </Card.Body>
         </Col>
       </Row>
