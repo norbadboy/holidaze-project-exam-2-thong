@@ -18,8 +18,8 @@ const Login = () => {
    * @param {string} password
    */
   const initialValues = {
-    email: "thong98@noroff.no",
-    password: "12345678",
+    email: "",
+    password: "",
   };
 
   const validationSchema = yup.object().shape({

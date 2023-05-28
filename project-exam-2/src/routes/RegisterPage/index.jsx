@@ -32,10 +32,10 @@ function SignUpForm() {
   const [errorMessage, setErrorMessage] = useState("");
   // only for testing. remove later
   const defaultValues = {
-    name: "thong98",
-    email: "thong98@noroff.no",
-    password: "12345678",
-    avatar: "https://placekitten.com/g/200/300",
+    name: "",
+    email: "",
+    password: "",
+    avatar: "",
     venueManager: false,
   };
   const {
