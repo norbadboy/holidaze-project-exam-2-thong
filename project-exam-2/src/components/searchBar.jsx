@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Dropdown } from "react-bootstrap";
-import { Button, Form, InputGroup } from "react-bootstrap";
+import { Form, InputGroup } from "react-bootstrap";
 import { useSearchParams } from "react-router-dom";
 import styles from "../styles/header.module.css";
 import { FaSearch } from "react-icons/fa";
 import imageNotAvailable from "../pictures/imageNotAvailable.png";
+import { StyledButton } from "../styles/styledComponents/styledButton";
 
 function SearchBar({ products }) {
   const [value, setValue] = useState("");
@@ -54,9 +55,9 @@ function SearchBar({ products }) {
               onChange={onChange}
               className={styles.searchInput}
             />
-            <Button type="submit" className={styles.searchButton}>
+            <StyledButton type="submit" className={styles.searchButton}>
               <FaSearch className={styles.searchBarIcon} />
-            </Button>
+            </StyledButton>
           </InputGroup>
         </Form>
         {showDropdown && (

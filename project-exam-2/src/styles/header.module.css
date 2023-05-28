@@ -115,16 +115,6 @@
 }
 .searchButton {
   border-radius: 20px;
-  background-color: var(--primary);
-  border-color: var(--primary);
-}
-.searchButton:hover {
-  background-color: var(--primary);
-  border-color: var(--primary);
-}
-.searchButton:active {
-  background-color: var(--primary) !important;
-  border-color: var(--primary) !important;
 }
 .searchBarIcon {
   margin-bottom: 5px;

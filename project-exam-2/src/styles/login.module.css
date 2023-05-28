@@ -38,8 +38,14 @@
 /* Buttons */
 .redirectToRegister_Button {
   background-color: var(--secondary-dark);
+  color: var(--neutral-0);
   margin-top: 10px;
 }
+.redirectToRegister_Button:active {
+  background-color: var(--secondary);
+  color: var(--neutral-0);
+}
+
 /* screen size */
 @media screen and (max-width: 990px) {
   .redirectToRegister_Container {

@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { API_PATH } from "../../api/constant.mjs";
 import useAPI from "../../api/apiHook.jsx";
-import { StyledButton } from "../../styles/styledComponents/styledButton.jsx";
+import { StyledButton, BaseButton } from "../../styles/styledComponents/styledButton.jsx";
 import styles from "../../styles/homePage.module.css";
 import ProductCard from "../../components/productCard.jsx";
 import SearchBar from "../../components/searchBar.jsx";
@@ -138,9 +138,9 @@ function HomePage() {
           <PriceFilter onFilter={handlePriceFilter} />
         </div>
         <div className={styles.clearButton_Container}>
-          <Button onClick={handleClearFilters} className={styles.clearButton}>
+          <BaseButton onClick={handleClearFilters} className={styles.clearButton}>
             Clear filters
-          </Button>
+          </BaseButton>
         </div>
       </div>
       <hr />

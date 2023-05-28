@@ -82,8 +82,8 @@
   color: var(--dark);
 }
 .filterButton:active {
-  background-color: var(--secondary-light) !important;
-  color: var(--dark) !important;
+  background-color: var(--secondary-light);
+  color: var(--dark);
 }
 .filterList_Container {
   cursor: pointer;
@@ -108,16 +108,13 @@
 .clearButton {
   background-color: var(--secondary-dark);
   border-color: var(--secondary-dark);
+  color: var(--neutral-0);
   padding: 6.5px 9px;
   margin-left: 30px;
 }
-.clearButton:hover {
-  background-color: var(--secondary-dark);
-  border-color: var(--secondary-dark);
-}
 .clearButton:active {
-  background-color: var(--secondary-dark) !important;
-  border-color: var(--secondary-dark) !important;
+  background-color: var(--secondary);
+  border-color: var(--secondary-dark);
 }
 
 @media screen and (min-width: 768px) {

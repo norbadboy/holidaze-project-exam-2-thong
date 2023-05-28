@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Modal, Button, ListGroup } from "react-bootstrap";
 import styles from "../styles/homePage.module.css";
 import { FaGlobeAmericas } from "react-icons/fa";
+import { BaseButton } from "../styles/styledComponents/styledButton";
 
 const CountriesFilter = ({ items, onFilter }) => {
   const [selectedCountry, setSelectedCountry] = useState("");
@@ -21,10 +22,10 @@ const CountriesFilter = ({ items, onFilter }) => {
 
   return (
     <div className={styles.filterContainer}>
-      <Button onClick={handleShow} className={styles.filterButton}>
+      <BaseButton onClick={handleShow} className={styles.filterButton}>
         <FaGlobeAmericas className={styles.filterButton_Icon} />
         Countries
-      </Button>
+      </BaseButton>
 
       <Modal show={showModal} onHide={handleClose}>
         <Modal.Header closeButton>

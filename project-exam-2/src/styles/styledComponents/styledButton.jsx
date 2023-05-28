@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const BaseButton = styled.button`
+export const BaseButton = styled.button`
   padding: 8px 17px;
   border-radius: 7px;
   border: none;
@@ -15,7 +15,7 @@ export const StyledButton = styled(BaseButton)`
   background-color: ${(props) => props.theme.color.primary};
   color: ${(props) => props.theme.color.neutral0};
 
-  &:hover {
+  &:active {
     background-color: pink;
   }
 `;

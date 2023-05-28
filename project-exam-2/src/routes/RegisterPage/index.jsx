@@ -7,7 +7,7 @@ import { Button, Card, Row, Col } from "react-bootstrap";
 import { MdMail } from "react-icons/md";
 import { FaFacebookSquare, FaApple, FaGoogle } from "react-icons/fa";
 import { StyledForm, StyledInput } from "../../styles/styledComponents/styledForm";
-import { StyledButton } from "../../styles/styledComponents/styledButton";
+import { StyledButton, BaseButton } from "../../styles/styledComponents/styledButton";
 import { ErrorMessage } from "../../styles/styledComponents/errorMessage";
 import { registerFunction } from "../../api/auth/register.mjs";
 import { loginFunction } from "../../api/auth/login.mjs";
@@ -133,12 +133,12 @@ function SignUpForm() {
                 <div className="mt-1">
                   <Link to="/login" className={styles.redirectToLogin_Link}>
                     <div className={styles.redirect_ButtonContainer}>
-                      <Button className={styles.redirectToLogin_Button}>
+                      <BaseButton className={styles.redirectToLogin_Button}>
                         <div className={styles.redirectToLogin_IconContainer}>
                           <MdMail className={styles.redirectToLogin_Icon} />
                         </div>
                         <div className={styles.redirectToLogin_Text}>Continue with E-mail</div>
-                      </Button>
+                      </BaseButton>
                     </div>
                   </Link>
                   <div className={styles.redirect_ButtonContainer}>

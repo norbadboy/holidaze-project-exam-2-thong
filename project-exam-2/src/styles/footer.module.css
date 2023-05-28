@@ -54,8 +54,8 @@
   border-color: var(--neutral-400);
 }
 .offcanvasButton:active {
-  background-color: var(--neutral-400) !important;
-  border-color: var(--neutral-400) !important;
+  background-color: var(--neutral-400);
+  border-color: var(--neutral-400);
 }
 .companyName_Container {
   display: flex;

@@ -27,9 +27,9 @@
 /* Buttons */
 .redirectToLogin_Button {
   display: flex;
+  border: 1px solid var(--dark) !important;
   background-color: var(--neutral-0);
   color: var(--dark);
-  border-color: var(--dark);
   width: 290px;
 }
 .redirectToLogin_Button:hover {
@@ -38,9 +38,9 @@
   border-color: var(--dark);
 }
 .redirectToLogin_Button:active {
-  background-color: var(--dark) !important;
-  color: var(--neutral-0) !important;
-  border-color: var(--dark) !important;
+  background-color: var(--dark);
+  color: var(--neutral-0);
+  border-color: var(--dark);
 }
 .redirectToLogin_Link {
   text-decoration: none;

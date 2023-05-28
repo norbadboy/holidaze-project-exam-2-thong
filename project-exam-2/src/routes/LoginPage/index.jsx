@@ -1,6 +1,6 @@
 import * as yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { StyledButton } from "../../styles/styledComponents/styledButton";
+import { BaseButton, StyledButton } from "../../styles/styledComponents/styledButton";
 import { Card, Row, Col } from "react-bootstrap";
 import { loginFunction } from "../../api/auth/login.mjs";
 import { useNavigate, Link } from "react-router-dom";
@@ -117,7 +117,7 @@ const Login = () => {
           <h4 className={styles.redirectToRegister_Title}>Don't have an account?</h4>
           <h5 className={styles.redirectToRegister_Title_Mobile}>Or register now!</h5>
           <Link to="/register">
-            <StyledButton className={styles.redirectToRegister_Button}>Register</StyledButton>
+            <BaseButton className={styles.redirectToRegister_Button}>Register</BaseButton>
           </Link>
         </Col>
       </Row>

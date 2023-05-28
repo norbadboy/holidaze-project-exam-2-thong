@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import styles from "../styles/footer.module.css";
 import { useState } from "react";
 import { Offcanvas, Button } from "react-bootstrap";
+import { BaseButton } from "../styles/styledComponents/styledButton";
 
 function Footer() {
   const [show, setShow] = useState(false);
@@ -79,9 +80,9 @@ function Footer() {
         </span>
 
         <span className={`${styles.offcanvasButtonContainer} ${styles.mobile}`}>
-          <Button className={styles.offcanvasButton} onClick={handleShow}>
+          <BaseButton className={styles.offcanvasButton} onClick={handleShow}>
             More info
-          </Button>
+          </BaseButton>
           <Offcanvas
             show={show}
             onHide={handleClose}
