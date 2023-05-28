@@ -4,7 +4,7 @@ import { FaTwitter } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import styles from "../styles/footer.module.css";
 import { useState } from "react";
-import { Offcanvas, Button } from "react-bootstrap";
+import { Offcanvas } from "react-bootstrap";
 import { BaseButton } from "../styles/styledComponents/styledButton";
 
 function Footer() {

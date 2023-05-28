@@ -30,7 +30,6 @@ const schema = yup.object().shape({
 function SignUpForm() {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
-  // only for testing. remove later
   const defaultValues = {
     name: "",
     email: "",
