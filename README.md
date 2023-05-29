@@ -130,7 +130,7 @@ This command will start the development server and the application will be acces
 A design prototype has been created to guide the visual and user experience design of the application.
 
 - [Prototype Desktop](https://xd.adobe.com/view/55803d91-90f2-4adb-b0ab-32927b0dc647-00d3/)
-- [Prototype Mobile]
+- [Prototype Mobile](https://xd.adobe.com/view/a288953f-0d47-41d5-b18e-2a9d53565c33-f7db/)
 
 - [Style tile](https://xd.adobe.com/view/6040ac71-c776-43a6-85a9-6be763e1d6d7-3513/)
 
